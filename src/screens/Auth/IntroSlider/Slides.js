@@ -8,7 +8,7 @@ import { CardTitle } from '../../../components/commons/Text'
 const Slides = ({ item }) => {
     return (
         <View style={styles.container}>
-            {/* {item.logo} */}
+            {item.logo}
             <CardTitle style={{ fontSize: wp(7), fontWeight: '600', marginTop: hp(3) }}>
                 {item.title}
             </CardTitle>
