@@ -5,6 +5,8 @@ import {
   StyleSheet,
 } from 'react-native';
 
+// hello bikaas
+
 // packages
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
