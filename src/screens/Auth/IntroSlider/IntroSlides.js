@@ -48,9 +48,9 @@ const IntroSlides = () => {
             logo: <Icon
                 name="GetOrder"
                 fill={color.Black}
-                width={wp(60)}
-                height={hp(38)}
-                style={{ marginRight: wp(14), marginTop: hp(4) }}
+                width={wp(70)}
+                height={hp(42)}
+                style={{ marginRight: wp(14), marginTop: hp(.1) }}
             />
         },
     ]
@@ -59,13 +59,37 @@ const IntroSlides = () => {
         return <Slides item={item} />;
     };
 
-    const renderSkipButton = () => {
+
+    const renderNextButton = () => {
         return (
             <TouchableOpacity style={styles.skipButton}>
-                <Text style={styles.skipButtonText}>Skip</Text>
+                <Text style={styles.skipButtonText}>Next</Text>
             </TouchableOpacity>
         );
     };
+
+    const handleDoneButton = () => {
+        navigation.navigate("SignUp")
+    }
+    const handleSkipButton = () => {
+        navigation.navigate("Home")
+    }
+
+    const renderSkipButton = () => {
+        return (
+            <TouchableOpacity style={styles.skipButton} onPress={handleSkipButton}>
+                <Text style={styles.skipButtonText}>Skip</Text>
+            </TouchableOpacity>
+        );
+    }
+
+    const renderDoneButton = () => {
+        return (
+            <TouchableOpacity style={styles.skipButton} onPress={handleDoneButton}>
+                <Text style={styles.skipButtonText}>Done</Text>
+            </TouchableOpacity>
+        );
+    }
 
     return (
         <View style={{ flex: 1, justifyContent: 'center' }}>
@@ -76,10 +100,13 @@ const IntroSlides = () => {
                 dotStyle={{ backgroundColor: color.Blue2 }}
                 activeDotStyle={{ backgroundColor: color.Blue }}
                 renderSkipButton={renderSkipButton}
-                onSkip={renderSkipButton}
-                showDoneButton={false}
-                showPrevButton={true}
+                // onSkip={renderSkipButton}
+                renderNextButton={renderNextButton}
+                renderDoneButton={renderDoneButton}
+                showDoneButton={true}
+                showPrevButton={false}
                 showNextButton={true}
+                showSkipButton={true}
             />
         </View>
     )
@@ -87,15 +114,14 @@ const IntroSlides = () => {
 
 const styles = StyleSheet.create({
     skipButton: {
-        marginRight: 20,
-        marginTop: 20,
+        marginTop: 10,
         alignItems: 'center',
         justifyContent: 'center',
 
     },
     skipButtonText: {
         fontSize: 18,
-        color: 'red',
+        color: color.Blue2,
     }
 })
 

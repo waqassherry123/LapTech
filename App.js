@@ -1,7 +1,5 @@
 import React from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
   StatusBar,
   useColorScheme,
   StyleSheet,
@@ -14,9 +12,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 //screens 
 import SplashScreen from './src/screens/SplashScreen';
-import ChooseProduct from './src/screens/Auth/ChooseProduct';
-import MakePayment from './src/screens/Auth/MakePayment';
 import IntroSlides from './src/screens/Auth/IntroSlider/IntroSlides';
+import SignUp from './src/screens/Auth/IntroSlider/SignUp';
+import Home from './src/screens/Home/Home';
 
 const Stack = createStackNavigator();
 function App() {
@@ -34,9 +32,9 @@ function App() {
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen name='IntroSlides' component={IntroSlides} options={{ headerShown: false }} />
-            <Stack.Screen name='MakePayment' component={MakePayment} options={{ headerShown: false }} />
-            <Stack.Screen name='ChooseProduct' component={ChooseProduct} options={{ headerShown: false }} />
             <Stack.Screen name='SplashScreen' component={SplashScreen} options={{ headerShown: false }} />
+            <Stack.Screen name='SignUp' component={SignUp} options={{ headerShown: false }} />
+            <Stack.Screen name='Home' component={Home} options={{ headerShown: false }} />
 
           </Stack.Navigator>
         </NavigationContainer>
