@@ -97,8 +97,8 @@ const IntroSlides = () => {
             <AppIntroSlider
                 data={slidesContent}
                 renderItem={renderSlides}
-                dotStyle={{ backgroundColor: color.Blue2 }}
-                activeDotStyle={{ backgroundColor: color.Blue }}
+                dotStyle={{ backgroundColor: color.Lilac2 }}
+                activeDotStyle={{ backgroundColor: color.Black }}
                 renderSkipButton={renderSkipButton}
                 // onSkip={renderSkipButton}
                 renderNextButton={renderNextButton}
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     },
     skipButtonText: {
         fontSize: 18,
-        color: color.Blue2,
+        color: color.Black,
     }
 })
 
