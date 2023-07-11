@@ -5,7 +5,7 @@ import {
   StyleSheet,
 } from 'react-native';
 
-// hello bikaas
+// hello bikaassssssssss
 
 // packages
 import { SafeAreaProvider } from 'react-native-safe-area-context';
