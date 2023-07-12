@@ -6,9 +6,11 @@ import {
     Polyline,
     Rect,
     Circle,
+    Ellipse,
     Svg,
 } from "react-native-svg";
-import { color } from "./src/theme/colors";
+
+import { color } from "../../theme/colors";
 
 export default {
     Logo: {
@@ -182,5 +184,43 @@ export default {
             </G>
         ),
         viewBox: "0 0 24 24"
-    }
+    },
+    Filter: {
+        svg: (
+            <G>
+                <Path d="M11 8L20 8" stroke={color.White} stroke-width="2" stroke-linecap="round" />
+                <Path d="M4 16L14 16" stroke={color.White} stroke-width="2" stroke-linecap="round" />
+                <Ellipse cx={7} cy={8} rx={3} ry={3} transform="rotate(90 7 8)" stroke={color.White} strokeWidth={2} strokeLinecap="round" />
+                <Ellipse cx={17} cy={16} rx={3} ry={3} transform="rotate(90 17 16)" stroke={color.White} strokeWidth={2} strokeLinecap="round" />
+            </G>
+        ),
+        viewBox: "0 0 24 24"
+    },
+    Search: {
+        svg: (
+            <G>
+                <Circle cx="11" cy="11" r="6" stroke={color.Gray} fill={color.White} />
+                <Path d="M20 20L17 17" stroke={color.Gray} stroke-linecap="round" />
+            </G>
+        ),
+        viewBox: "0 0 24 24"
+    },
+    Right: {
+        svg: (
+            <G>
+                <Path d="M1 1L7 7L1 13" stroke="#33363F" stroke-width="2" fill="transparent" />
+            </G>
+        ),
+        viewBox: "0 0 9 14"
+    },
+    Left: {
+        svg: (
+            <G>
+                <Path d="M15 6L9 12L15 18" stroke="#33363F" stroke-width="2" />
+            </G>
+        ),
+        viewBox: "0 0 24 24"
+    },
+
+
 }
