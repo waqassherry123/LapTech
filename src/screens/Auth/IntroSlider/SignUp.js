@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet, TextInput } from 'react-native'
+import { View, Text, Image, StyleSheet, TextInput ,TouchableOpacity} from 'react-native'
 import React, { useState } from 'react'
 
 
@@ -9,9 +9,15 @@ import { fontSize, fontWeight } from '../../../theme/fonts'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from '../../../theme/metrics'
 import * as spacer from '../../../utils/spacer'
 import Icon from '../../../assets/icons/Icon'
+import { useNavigation } from '@react-navigation/native'
+import LoginScreen from './login'
+
+
 
 
 const SignUp = () => {
+    const navigation = useNavigation()
+
     const [text, setText] = useState('');
 
     const handleInputChange = (inputText) => {
@@ -55,6 +61,16 @@ const SignUp = () => {
                 onChangeText={handleInputChange}
                 prefix={<Icon name="Profile" width={wp(12)} height={hp(5)} />}
             /> */}
+             
+             {/* login text */}
+          <TouchableOpacity>
+           <Text style={styles.signupText}  
+             onPress={() =>
+             navigation.navigate('LoginScreen')
+            }>
+            Have an account,Login
+            </Text>
+          </TouchableOpacity>
         </View>
     )
 }
@@ -85,7 +101,11 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
         elevation: 1
 
-    }
+    },
+    signupText: {
+        color: color.Black,
+        textDecorationLine: 'underline',
+      },
 })
 
 export default SignUp
