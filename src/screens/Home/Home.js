@@ -1,15 +1,21 @@
-import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native'
-import React from 'react'
-import Icon from '../../assets/icons/Icon'
-
-//components
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, SafeAreaView } from 'react-native'
+import React, { useState, useRef } from 'react'
+//utilities
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from '../../theme/metrics'
 import { color } from '../../theme/colors'
+import Icon from '../../assets/icons/Icon'
+
+//packages
+import Sample from './Modal/Sample'
 
 
 const Home = () => {
+
+    const [rbSheetOpen, setRbSheetOpen] = useState(false)
+
     return (
-        <View style={{ flex: 1, alignItems: 'center' }}>
+        <SafeAreaView style={{ flex: 1, alignItems: 'center' }}>
+            <Sample isOpen={rbSheetOpen} close={() => setRbSheetOpen(false)} />
             <View style={styles.container}>
                 <View style={styles.leftContainer}>
                     <Icon
@@ -45,8 +51,9 @@ const Home = () => {
                     <TextInput placeholder="Search" />
                 </TouchableOpacity>
 
-                <View style={{ width: wp(10), height: hp(5), backgroundColor: color.Default, marginRight: wp(2), justifyContent: 'center', alignItems: 'center', borderRadius: wp(2) }}>
-                    <TouchableOpacity>
+                <View>
+                    {/* Button */}
+                    <TouchableOpacity style={styles.button} onPress={() => setRbSheetOpen(true)}>
                         <Icon
                             name="Filter"
                             width={wp(8)}
@@ -66,7 +73,7 @@ const Home = () => {
                     />
                 </TouchableOpacity>
             </View>
-        </View>
+        </SafeAreaView>
     );
 }
 
@@ -85,8 +92,7 @@ const styles = StyleSheet.create({
         backgroundColor: color.White,
         width: '92%',
         borderRadius: wp(2)
-    }
-    ,
+    },
     leftContainer: {
         flex: 1,
     },
@@ -104,6 +110,15 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 16,
         fontWeight: 'bold',
+    },
+    button: {
+        width: wp(10),
+        height: hp(5),
+        backgroundColor: color.Default,
+        marginRight: wp(2),
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: wp(2),
     },
 });
 

@@ -1,15 +1,19 @@
-import { View, Text, Image, StyleSheet, TextInput ,TouchableOpacity} from 'react-native'
+import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 
 
-//Assets
+//utilities
 import Logo from '../../../assets/images/Logo.png'
 import { color } from '../../../theme/colors'
 import { fontSize, fontWeight } from '../../../theme/fonts'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from '../../../theme/metrics'
 import * as spacer from '../../../utils/spacer'
 import Icon from '../../../assets/icons/Icon'
+
+//packages
 import { useNavigation } from '@react-navigation/native'
+
+//screens
 import LoginScreen from './login'
 
 
@@ -26,7 +30,7 @@ const SignUp = () => {
 
     return (
         <View style={styles.container}>
-            <Image source={Logo} style={{ height: hp(12), width: wp(20) }} />
+            <Icon name="Logo" width={wp(25)} height={hp(10)} />
             <Text style={styles.signUp}>Sign Up</Text>
             <spacer.s7 />
             <TextInput
@@ -50,7 +54,6 @@ const SignUp = () => {
                 placeholder="Password"
                 style={styles.textInput}
             />
-
             {/* <OutlinedTextField
                 label="Password"
                 maxLength={30}
@@ -61,16 +64,16 @@ const SignUp = () => {
                 onChangeText={handleInputChange}
                 prefix={<Icon name="Profile" width={wp(12)} height={hp(5)} />}
             /> */}
-             
-             {/* login text */}
-          <TouchableOpacity>
-           <Text style={styles.signupText}  
-             onPress={() =>
-             navigation.navigate('LoginScreen')
-            }>
-            Have an account,Login
-            </Text>
-          </TouchableOpacity>
+
+            {/* login text */}
+            <TouchableOpacity>
+                <Text style={styles.signupText}
+                    onPress={() =>
+                        navigation.navigate('LoginScreen')
+                    }>
+                    Have an account,Login
+                </Text>
+            </TouchableOpacity>
         </View>
     )
 }
@@ -80,7 +83,6 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingTop: hp(10),
         alignItems: 'center',
-        backgroundColor: color.White,
     },
     signUp: {
         marginTop: hp(5),
@@ -100,12 +102,11 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.50,
         shadowRadius: 3.84,
         elevation: 1
-
     },
     signupText: {
         color: color.Black,
         textDecorationLine: 'underline',
-      },
+    },
 })
 
 export default SignUp

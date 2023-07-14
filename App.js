@@ -5,8 +5,6 @@ import {
   StyleSheet,
 } from 'react-native';
 
-// hello bikaassssssssss
-
 // packages
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
@@ -40,7 +38,6 @@ function App() {
             <Stack.Screen name='SignUp' component={SignUp} options={{ headerShown: false }} />
             <Stack.Screen name='Home' component={Home} options={{ headerShown: false }} />
             <Stack.Screen name='LoginScreen' component={LoginScreen} options={{ headerShown: false }} />
-
           </Stack.Navigator>
         </NavigationContainer>
 

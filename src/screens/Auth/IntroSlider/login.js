@@ -1,27 +1,40 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet ,Image} from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, SafeAreaView } from 'react-native';
+
+//utilities
 import logo from "../../../assets/icons/logo.png";
 import facebook from "../../../assets/icons/facebook.png";
 import google from "../../../assets/icons/google.png";
 import { color } from '../../../theme/colors';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from '../../../theme/metrics';
+
+
+//packages
 import { useNavigation } from '@react-navigation/native'
+
+//screens
 import SignUp from './SignUp';
 import Home from '../../Home/Home';
- 
+import Icon from '../../../assets/icons/Icon';
+
 
 const LoginScreen = () => {
   const navigation = useNavigation()
 
 
   return (
-    <View style={styles.container}>
-          {/* Logo */}
-          <Image source={logo} style={styles.logo} />
-
+    <SafeAreaView style={styles.container}>
+      {/* Logo */}
+      {/* <Image source={logo} style={styles.logo} /> */}
+      <Icon name="Logo"  height={wp(20)}
+            width={wp(20)}
+            style={[
+              {
+                marginBottom:"10%"
+              },
+            ]}/>
       {/* Email input */}
       <View style={styles.inputContainer}>
-        {/* <Image style={styles.inputIcon} /> */}
         <TextInput
           style={styles.input}
           placeholder="Email"
@@ -53,9 +66,9 @@ const LoginScreen = () => {
 
       {/* Login button */}
       <TouchableOpacity style={styles.loginButton}
-       onPress={() =>
-        navigation.navigate('Home')
-      }>
+        onPress={() =>
+          navigation.navigate('Home')
+        }>
         <Text style={styles.loginButtonText}>Login</Text>
       </TouchableOpacity>
 
@@ -66,23 +79,23 @@ const LoginScreen = () => {
       <View style={styles.socialButtonsContainer}>
         {/* Facebook button */}
         <TouchableOpacity >
-        <Image source={facebook} style={[styles.logo, {height: hp(10), width: wp(20)}]} />
+          <Image source={facebook} style={[styles.logo, { height: hp(10), width: wp(20) }]} />
         </TouchableOpacity>
 
         {/* Google button */}
         <TouchableOpacity >
-        <Image source={google} style={[styles.logo, {height: hp(10.5), width: wp(20.5)}]} />
+          <Image source={google} style={[styles.logo, { height: hp(10.5), width: wp(20.5) }]} />
         </TouchableOpacity>
       </View>
 
       {/* Signup text */}
       <TouchableOpacity>
         <Text style={styles.signupText}
-        onPress={() =>
-        navigation.navigate('SignUp')
-      }>Don't have an account? Sign up</Text>
+          onPress={() =>
+            navigation.navigate('SignUp')
+          }>Don't have an account? Sign up</Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -91,8 +104,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 20,
-    backgroundColor:color.White
+    // backgroundColor: color.White
   },
   logo: {
     fontSize: 24,
@@ -102,31 +114,31 @@ const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#aaaaaa',
+    backgroundColor:color.White,
     borderRadius: 5,
     paddingHorizontal: 10,
     marginBottom: 20,
+    width: "90%"
   },
   inputIcon: {
     marginRight: 10,
   },
   input: {
     flex: 1,
-    height: 40,
+    height: 50,
   },
   forgotPassword: {
     marginBottom: 20,
     color: color.Black,
-    marginLeft:"60%"
+    marginLeft: "60%"
   },
   loginButton: {
     backgroundColor: '#f77951',
     borderRadius: 30,
     paddingVertical: 15,
     marginBottom: 10,
-    width:'50%',
-    height:'7%',
+    width: '50%',
+    height: '7%',
   },
   loginButtonText: {
     color: 'white',
