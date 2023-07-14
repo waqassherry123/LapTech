@@ -10,6 +10,15 @@ import { color } from '../../theme/colors'
 import * as images from '../../assets/images'
 import ProductCard from './ProductCard'
 import { colors } from 'react-native-elements';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, SafeAreaView } from 'react-native'
+import React, { useState, useRef } from 'react'
+//utilities
+import { heightPercentageToDP as hp, widthPercentageToDP as wp } from '../../theme/metrics'
+import { color } from '../../theme/colors'
+import Icon from '../../assets/icons/Icon'
+
+//packages
+import Sample from './Modal/Sample'
 
 
 const products = [
@@ -115,8 +124,9 @@ const Home = () => {
                     <TextInput placeholder="Search" />
                 </TouchableOpacity>
 
-                <View style={{ width: wp(10), height: hp(5), backgroundColor: color.Default, marginRight: wp(2), justifyContent: 'center', alignItems: 'center', borderRadius: wp(2) }}>
-                    <TouchableOpacity>
+                <View>
+                    {/* Button */}
+                    <TouchableOpacity style={styles.button} onPress={() => setRbSheetOpen(true)}>
                         <Icon
                             name="Filter"
                             width={wp(8)}
@@ -170,8 +180,7 @@ const styles = StyleSheet.create({
         backgroundColor: color.White,
         width: '92%',
         borderRadius: wp(2)
-    }
-    ,
+    },
     leftContainer: {
         flex: 1,
     },
@@ -195,6 +204,15 @@ const styles = StyleSheet.create({
     },
     gridItem: {
         flex: 1,
+    },
+    button: {
+        width: wp(10),
+        height: hp(5),
+        backgroundColor: color.Default,
+        marginRight: wp(2),
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: wp(2),
     },
 });
 
