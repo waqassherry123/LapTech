@@ -31,7 +31,6 @@ const styles = StyleSheet.create({
         color: color.White,
         fontSize: wp(4.5),
         fontWeight: '400'
-
     }
 })
 

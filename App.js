@@ -17,6 +17,7 @@ import SplashScreen from './src/screens/SplashScreen';
 import IntroSlides from './src/screens/Auth/IntroSlider/IntroSlides';
 import SignUp from './src/screens/Auth/IntroSlider/SignUp';
 import Home from './src/screens/Home/Home';
+import ProductDetailsScreen from './src/screens/Home/ProductDetailsScreen';
 
 const Stack = createStackNavigator();
 function App() {
@@ -37,6 +38,7 @@ function App() {
             <Stack.Screen name='SplashScreen' component={SplashScreen} options={{ headerShown: false }} />
             <Stack.Screen name='SignUp' component={SignUp} options={{ headerShown: false }} />
             <Stack.Screen name='Home' component={Home} options={{ headerShown: false }} />
+            <Stack.Screen name='ProductDetailsScreen' component={ProductDetailsScreen} options={{ headerShown: false }} />
 
           </Stack.Navigator>
         </NavigationContainer>
