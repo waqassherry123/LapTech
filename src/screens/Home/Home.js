@@ -1,24 +1,19 @@
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, FlatList } from 'react-native'
-import React from 'react'
-import Icon from '../../assets/icons/Icon'
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, FlatList ,SafeAreaView} from 'react-native'
+import React, { useState, useRef } from 'react'
 import { useNavigation } from '@react-navigation/native';
 
 
 //components
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from '../../theme/metrics'
-import { color } from '../../theme/colors'
 import * as images from '../../assets/images'
 import ProductCard from './ProductCard'
-import { colors } from 'react-native-elements';
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, SafeAreaView } from 'react-native'
-import React, { useState, useRef } from 'react'
 //utilities
-import { heightPercentageToDP as hp, widthPercentageToDP as wp } from '../../theme/metrics'
 import { color } from '../../theme/colors'
 import Icon from '../../assets/icons/Icon'
 
 //packages
 import Sample from './Modal/Sample'
+import ProductDetailsScreen from './ProductDetailsScreen';
 
 
 const products = [
@@ -28,7 +23,7 @@ const products = [
         price: 19.99,
         image: images.product1,
         details: "Professionals who expect the very best from their technology turn to the ThinkPad X1 line—not just for innovation and style, but for uncompromised performance.From ultralight laptops and 2-in -1s, to extreme power devices.",
-        colorOptions: [color.Blue3, color.Gray, colors.black]
+        colorOptions: [color.Blue3, color.Gray, color.black]
     },
     {
         id: 2,
@@ -36,7 +31,7 @@ const products = [
         price: 29.99,
         image: images.product2,
         details: "Dell Vostro is a Windows 10 laptop with a 15.50-inch display that has a resolution of 1366x768 pixels. It is powered by a Core i5 processor and it comes with 8GB of RAM",
-        colorOptions: [color.Blue3, color.Gray, colors.black]
+        colorOptions: [color.Blue3, color.Gray, color.black]
     },
     {
         id: 3,
@@ -44,7 +39,7 @@ const products = [
         price: 39.99,
         image: images.product3,
         details: "Dell Vostro is a Windows 10 laptop with a 15.50-inch display that has a resolution of 1366x768 pixels. It is powered by a Core i5 processor and it comes with 8GB of RAM",
-        colorOptions: [color.Blue3, color.Gray, colors.black]
+        colorOptions: [color.Blue3, color.Gray, color.black]
     },
     {
         id: 4,
@@ -52,7 +47,7 @@ const products = [
         price: 49.99,
         image: images.product4,
         details: "Dell Vostro is a Windows 10 laptop with a 15.50-inch display that has a resolution of 1366x768 pixels. It is powered by a Core i5 processor and it comes with 8GB of RAM",
-        colorOptions: [color.Blue3, color.Gray, colors.black]
+        colorOptions: [color.Blue3, color.Gray, color.black]
     },
     {
         id: 5,
@@ -60,13 +55,14 @@ const products = [
         price: 59.99,
         image: images.product5,
         details: "Dell Vostro is a Windows 10 laptop with a 15.50-inch display that has a resolution of 1366x768 pixels. It is powered by a Core i5 processor and it comes with 8GB of RAM",
-        colorOptions: [color.Blue3, color.Gray, colors.black]
+        colorOptions: [color.Blue3, color.Gray, color.black]
     },
 ]
 
 const Home = () => {
 
     const navigation = useNavigation();
+    const [rbSheetOpen, setRbSheetOpen] = useState(false)
 
     const handleProductPress = (product) => {
         navigation.navigate('ProductDetailsScreen', { product });
@@ -85,7 +81,8 @@ const Home = () => {
     );
 
     return (
-        <View style={{ flex: 1, alignItems: 'center' }}>
+        <SafeAreaView style={{ flex: 1, alignItems: 'center' }}>
+        <Sample isOpen={rbSheetOpen} close={() => setRbSheetOpen(false)} />
 
             {/* Header */}
             <View style={styles.container}>
@@ -161,7 +158,7 @@ const Home = () => {
                     renderItem={renderProductItem}
                 />
             </View>
-        </View>
+        </SafeAreaView>
     );
 }
 
