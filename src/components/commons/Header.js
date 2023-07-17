@@ -32,8 +32,6 @@ const styles = StyleSheet.create({
         position: "relative"
     },
     backButton: {
-        // marginRight: wp(-15),
-        // paddingHorizontal: wp(5)
         position: "absolute",
         left: wp(2),
         paddingHorizontal: wp(1),
