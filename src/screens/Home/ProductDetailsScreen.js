@@ -77,7 +77,7 @@ const ProductDetailsScreen = ({ route }) => {
                     </View>
                     <spacer.s3 />
                     <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                        <Button title="Add to Cart" onClick={() => navigation.navigate("MyCart")} />
+                        <Button title="Add to Cart" onClick={() => navigation.navigate("MyCart", { product })} />
                     </View>
                     <spacer.s3 />
                 </View>
