@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Image, Text, StyleSheet, SafeAreaView } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 
@@ -15,6 +15,12 @@ const ProductDetailsScreen = ({ route }) => {
     const { product } = route.params;
     const navigation = useNavigation()
 
+    const [isFavorite, setIsFavorite] = useState(false);
+
+    const handleFavoritePress = () => {
+        setIsFavorite(!isFavorite);
+    };
+
     return (
         <View style={styles.container}>
             <SafeAreaView>
@@ -26,12 +32,27 @@ const ProductDetailsScreen = ({ route }) => {
                             height={hp(6)}
                         />
                     </TouchableOpacity>
+
                     <View style={styles.favorite}>
-                        <Icon
-                            name="Heart"
-                            width={wp(8)}
-                            height={hp(5)}
-                        />
+                        <TouchableOpacity onPress={() => handleFavoritePress()}>
+                            {
+                                isFavorite ?
+                                    <Icon
+                                        name="Heart"
+                                        width={wp(8)}
+                                        height={hp(5)}
+                                        fill={color.Default}
+                                    />
+                                    :
+                                    <Icon
+                                        name="Heart"
+                                        width={wp(8)}
+                                        height={hp(5)}
+                                        fill="transparent"
+                                    />
+
+                            }
+                        </TouchableOpacity>
                     </View>
                 </View>
                 <View style={styles.imageContainer}>
@@ -56,7 +77,7 @@ const ProductDetailsScreen = ({ route }) => {
                     </View>
                     <spacer.s3 />
                     <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                        <Button title="Add to Cart" onClick={() => navigation.navigate("Home")} />
+                        <Button title="Add to Cart" onClick={() => navigation.navigate("MyCart")} />
                     </View>
                     <spacer.s3 />
                 </View>
@@ -74,7 +95,9 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        margin: 18
+        marginRight: wp(6),
+        marginLeft: wp(2),
+        marginVertical: hp(2)
     },
     favorite: {
         width: wp(12),
@@ -84,6 +107,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
+    // favoriteActive: {
+    //     backgroundColor: 'red',
+    //     borderColor: 'red',
+    // },
     imageContainer: {
         width: '90%',
         height: 250,

@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, FlatList ,SafeAreaView} from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, FlatList, SafeAreaView } from 'react-native'
 import React, { useState, useRef } from 'react'
 import { useNavigation } from '@react-navigation/native';
 
@@ -82,7 +82,7 @@ const Home = () => {
 
     return (
         <SafeAreaView style={{ flex: 1, alignItems: 'center' }}>
-        <Sample isOpen={rbSheetOpen} close={() => setRbSheetOpen(false)} />
+            <Sample isOpen={rbSheetOpen} close={() => setRbSheetOpen(false)} />
 
             {/* Header */}
             <View style={styles.container}>
@@ -167,8 +167,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingHorizontal: 8,
-        height: 60,
+        paddingHorizontal: wp(2),
+        height: hp(8),
+        // hight: 60
     },
     searchContainer: {
         flexDirection: 'row',
