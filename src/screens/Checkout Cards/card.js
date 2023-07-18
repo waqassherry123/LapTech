@@ -1,20 +1,21 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import Icon from '../assets/icons/Icon';
+import Icon from '../../assets/icons/Icon';
 
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from '../theme/metrics'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from '../../theme/metrics'
+import { color } from '../../theme/colors';
 
 
 const Card = () => {
   return (
     <View style={styles.card}>
-        <Icon name="Heart" size={24} color="black" />
+        <Icon name="Check" width={wp(8)} height={hp(8)}/>
       <View style={styles.leftColumn}>
         <Text style={styles.heading}>Home</Text>
         <Text style={styles.phoneNumber}>123-456-7890</Text>
         <Text style={styles.address}>123 Main St, City, State</Text>
       </View>
-      <Icon name="Cross" size={24} color="black" style={styles.rightIcon} />
+      <Icon name="Edit" fill={color.Gray} width={wp(7)} height={hp(7)} />
     </View>
   );
 };
@@ -41,7 +42,8 @@ const styles = StyleSheet.create({
   },
   leftColumn:{
     paddingRight:wp(14)
-  }
+  },
+  
 });
 
 export default Card;

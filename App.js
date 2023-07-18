@@ -18,6 +18,8 @@ import Home from './src/screens/Home/Home';
 import ProductDetailsScreen from './src/screens/Home/ProductDetailsScreen';
 import MyCart from './src/screens/MyCart';
 import Checkout from './src/screens/Checkout';
+import PaymentDoneScreen from './src/screens/PaymentProcess';
+
 
 const Stack = createStackNavigator();
 function App() {
@@ -41,6 +43,7 @@ function App() {
             <Stack.Screen name='ProductDetailsScreen' component={ProductDetailsScreen} options={{ headerShown: false }} />
             <Stack.Screen name='MyCart' component={MyCart} options={{ headerShown: false }} />
             <Stack.Screen name='Checkout' component={Checkout} options={{ headerShown: false }} />
+            <Stack.Screen name='PaymentDoneScreen' component={PaymentDoneScreen} options={{ headerShown: false }} />
 
           </Stack.Navigator>
         </NavigationContainer>
