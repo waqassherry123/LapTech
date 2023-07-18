@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native'
 import Header from '../components/commons/Header'
 import Button from '../components/commons/Button'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from '../theme/metrics'
+import { color } from '../theme/colors'
 
 
 
@@ -51,8 +52,10 @@ const MyCart = ({ route }) => {
                     </View>
                 </View>
 
-
-
+                <View style={styles.subTotal}>
+                    <Text style={styles.subtotalText}>Subtotal  :</Text>
+                    <Text style={styles.subtotalPrice}>$740</Text>
+                </View>
                 <View style={{ alignItems: 'center' }}>
                     <Button title="Checkout" onClick={() => navigation.navigate("Checkout")} />
                 </View>
@@ -92,13 +95,15 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     name: {
-        fontSize: 16,
-        fontWeight: 'bold',
+        fontSize: 18,
+        fontWeight: '400',
         marginBottom: 8,
+        color: color.Gray
     },
     price: {
-        fontSize: 14,
-        color: 'gray',
+        fontSize: 15,
+        color: color.Black,
+        fontWeight: '600',
     },
     quantityContainer: {
         flexDirection: 'row',
@@ -107,17 +112,34 @@ const styles = StyleSheet.create({
     button: {
         paddingHorizontal: 12,
         paddingVertical: 6,
-        backgroundColor: 'lightgray',
+        backgroundColor: color.Pink3,
         borderRadius: 4,
     },
     buttonText: {
         fontSize: 16,
         fontWeight: 'bold',
+        color: color.Default,
     },
     quantity: {
         marginHorizontal: 12,
         fontSize: 16,
     },
+    subTotal: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginHorizontal: wp(5),
+        marginVertical: hp(3)
+    },
+    subtotalText: {
+        fontSize: 18,
+        fontWeight: '400',
+    },
+    subtotalPrice: {
+        fontSize: 18,
+        color: color.Black,
+        fontWeight: '600',
+    }
+
 })
 
 export default MyCart
