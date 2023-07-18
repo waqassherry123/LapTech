@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: wp(3),
         height: 56,
-        backgroundColor: '#ffffff',
         elevation: 4,
         position: "relative"
     },
