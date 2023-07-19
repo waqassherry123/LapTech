@@ -19,6 +19,7 @@ import ProductDetailsScreen from './src/screens/Home/ProductDetailsScreen';
 import MyCart from './src/screens/MyCart';
 import Checkout from './src/screens/Checkout';
 import PaymentDoneScreen from './src/screens/PaymentProcess';
+import LoginScreen from './src/screens/Auth/IntroSlider/login';
 
 
 const Stack = createStackNavigator();
@@ -39,6 +40,7 @@ function App() {
             <Stack.Screen name='IntroSlides' component={IntroSlides} options={{ headerShown: false }} />
             <Stack.Screen name='SplashScreen' component={SplashScreen} options={{ headerShown: false }} />
             <Stack.Screen name='SignUp' component={SignUp} options={{ headerShown: false }} />
+            <Stack.Screen name='LoginScreen' component={LoginScreen} options={{ headerShown: false }} />
             <Stack.Screen name='Home' component={Home} options={{ headerShown: false }} />
             <Stack.Screen name='ProductDetailsScreen' component={ProductDetailsScreen} options={{ headerShown: false }} />
             <Stack.Screen name='MyCart' component={MyCart} options={{ headerShown: false }} />
