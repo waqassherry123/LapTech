@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
 import { color } from '../../theme/colors';
+import { heightPercentageToDP as hp, widthPercentageToDP as wp } from '../../theme/metrics'
 
 const ProductCard = ({ image, name, price }) => {
     return (
@@ -29,9 +30,9 @@ const styles = StyleSheet.create({
         shadowRadius: 10,
     },
     image: {
-        width: 160,
-        height: 160,
-        resizeMode: 'contain',
+        width: wp(40),
+        height: hp(20),
+        resizeMode: "center",
         marginBottom: 4,
         borderRadius: 8,
         borderBottomRightRadius: 0,
