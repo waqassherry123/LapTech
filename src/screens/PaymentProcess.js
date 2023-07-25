@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-
+import { useNavigation } from '@react-navigation/native';
 
 import Icon from '../assets/icons/Icon';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from '../theme/metrics'
@@ -8,11 +8,12 @@ import { color } from '../theme/colors';
 
 
 const PaymentDoneScreen = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.progressContainer}>
         <View style={styles.progressCircle}>
-        <Icon name="Check" width={wp(14)} height={hp(12)}/>
+          <Icon name="Check" width={wp(14)} height={hp(12)} />
         </View>
       </View>
       <Text style={styles.congratsHeading}>Congratulations!!!</Text>
@@ -21,7 +22,7 @@ const PaymentDoneScreen = () => {
         <TouchableOpacity style={styles.button}>
           <Text style={styles.buttonText}>Continue Shopping</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Profile")}>
           <Text style={styles.buttonText}>View Order</Text>
         </TouchableOpacity>
       </View>
@@ -46,8 +47,8 @@ const styles = StyleSheet.create({
     borderRadius: wp(80),
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth:10,
-    borderColor:color.Default
+    borderWidth: 10,
+    borderColor: color.Default
   },
   congratsHeading: {
     fontSize: 24,
@@ -59,21 +60,21 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 32,
     textAlign: 'center',
-    color:color.Gray
+    color: color.Gray
   },
   buttonContainer: {
     flexDirection: 'column',
-    alignItems:"center",
+    alignItems: "center",
     width: '100%',
-    marginVertical:hp(4)
+    marginVertical: hp(4)
   },
   button: {
     backgroundColor: color.Default,
     paddingVertical: 15,
-    width:wp(60),
+    width: wp(60),
     borderRadius: wp(10),
     marginBottom: 16,
-    marginVertical:hp(3)
+    marginVertical: hp(3)
   },
   buttonText: {
     color: '#ffffff',
