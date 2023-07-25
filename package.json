@@ -14,6 +14,8 @@
     "@react-native-community/slider": "^4.4.2",
     "@react-navigation/native": "^6.1.7",
     "@react-navigation/stack": "^6.3.17",
+    "@reduxjs/toolkit": "^1.9.5",
+    "axios": "^1.4.0",
     "react": "18.2.0",
     "react-native": "0.71.11",
     "react-native-app-intro-slider": "^4.0.4",
@@ -26,7 +28,10 @@
     "react-native-scroll-into-view": "^2.0.2",
     "react-native-stack": "^1.0.0-alpha11",
     "react-native-svg": "^13.9.0",
-    "react-native-svg-icon": "^0.10.0"
+    "react-native-svg-icon": "^0.10.0",
+    "react-redux": "^8.1.1",
+    "redux": "^4.2.1",
+    "redux-saga": "^1.2.3"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

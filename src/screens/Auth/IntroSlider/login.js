@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, SafeAreaView } from 'react-native';
 
 //utilities
@@ -7,6 +7,7 @@ import facebook from "../../../assets/icons/facebook.png";
 import google from "../../../assets/icons/google.png";
 import { color } from '../../../theme/colors';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from '../../../theme/metrics';
+import authSlice from "../IntroSlider/Redux/slice"
 
 
 //packages
@@ -16,11 +17,25 @@ import { useNavigation } from '@react-navigation/native'
 import SignUp from './SignUp';
 import Home from '../../Home/Home';
 import Icon from '../../../assets/icons/Icon';
+import { useDispatch } from 'react-redux';
 
 
 const LoginScreen = () => {
   const navigation = useNavigation()
+  const [email , setEmail] = useState("")
+  const [password , setPassword] = useState("")
 
+const dispatch = useDispatch();
+
+  const handleLogin = () => {
+     const params ={
+      username:email,
+      pwd:password,
+      player_id: "b516f0fd-e6aa-4bbe-95bc-aa181b8781dd",
+     }
+     console.log(first)
+     dispatch(authSlice.actions.login(params));
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -37,12 +52,14 @@ const LoginScreen = () => {
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
+          value={email}
           placeholder="Email"
           placeholderTextColor="#aaaaaa"
           keyboardType="email-address"
           autoCapitalize="none"
           autoCompleteType="email"
           autoCorrect={false}
+          onChangeText={text => setEmail(text)}
         />
       </View>
 
@@ -50,12 +67,14 @@ const LoginScreen = () => {
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
+          value={password}
           placeholder="Password"
           placeholderTextColor="#aaaaaa"
           secureTextEntry
           autoCapitalize="none"
           autoCompleteType="password"
           autoCorrect={false}
+          onChangeText={text =>setPassword(text)}
         />
       </View>
 
@@ -66,8 +85,9 @@ const LoginScreen = () => {
 
       {/* Login button */}
       <TouchableOpacity style={styles.loginButton}
+
         onPress={() =>
-          navigation.navigate('Home')
+         handleLogin()
         }>
         <Text style={styles.loginButtonText}>Login</Text>
       </TouchableOpacity>
