@@ -22,32 +22,32 @@ import { useDispatch } from 'react-redux';
 
 const LoginScreen = () => {
   const navigation = useNavigation()
-  const [email , setEmail] = useState("")
-  const [password , setPassword] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
 
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleLogin = () => {
-     const params ={
-      username:email,
-      pwd:password,
+    const params = {
+      username: email,
+      pwd: password,
       player_id: "b516f0fd-e6aa-4bbe-95bc-aa181b8781dd",
-     }
-     console.log(first)
-     dispatch(authSlice.actions.login(params));
+    }
+
+    dispatch(authSlice.actions.login(params));
   }
 
   return (
     <SafeAreaView style={styles.container}>
       {/* Logo */}
       {/* <Image source={logo} style={styles.logo} /> */}
-      <Icon name="Logo"  height={wp(20)}
-            width={wp(20)}
-            style={[
-              {
-                marginBottom:"10%"
-              },
-            ]}/>
+      <Icon name="Logo" height={wp(20)}
+        width={wp(20)}
+        style={[
+          {
+            marginBottom: "10%"
+          },
+        ]} />
       {/* Email input */}
       <View style={styles.inputContainer}>
         <TextInput
@@ -74,7 +74,7 @@ const dispatch = useDispatch();
           autoCapitalize="none"
           autoCompleteType="password"
           autoCorrect={false}
-          onChangeText={text =>setPassword(text)}
+          onChangeText={text => setPassword(text)}
         />
       </View>
 
@@ -87,7 +87,7 @@ const dispatch = useDispatch();
       <TouchableOpacity style={styles.loginButton}
 
         onPress={() =>
-         handleLogin()
+          handleLogin()
         }>
         <Text style={styles.loginButtonText}>Login</Text>
       </TouchableOpacity>
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor:color.White,
+    backgroundColor: color.White,
     borderRadius: 5,
     paddingHorizontal: 10,
     marginBottom: 20,
