@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, SafeAreaView } from 'react-native';
 
 //utilities
-import logo from "../../../assets/icons/logo.png";
+import * as spacer from '../../../utils/spacer'
 import facebook from "../../../assets/icons/facebook.png";
 import google from "../../../assets/icons/google.png";
 import { color } from '../../../theme/colors';
@@ -28,6 +28,7 @@ const LoginScreen = () => {
   const dispatch = useDispatch();
 
   const handleLogin = () => {
+    navigation.navigate("Home")
     const params = {
       username: email,
       pwd: password,

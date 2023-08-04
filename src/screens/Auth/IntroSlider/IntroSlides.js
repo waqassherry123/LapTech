@@ -1,5 +1,5 @@
 import { View, Text, StatusBar, StyleSheet, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useState, useRef } from 'react'
 
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { useNavigation } from '@react-navigation/native'
@@ -15,6 +15,8 @@ import Icon from '../../../assets/icons/Icon';
 
 const IntroSlides = () => {
     const navigation = useNavigation()
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const sliderRef = useRef(null);
 
     const slidesContent = [
         {
@@ -59,25 +61,14 @@ const IntroSlides = () => {
         return <Slides item={item} />;
     };
 
-
-    const renderNextButton = () => {
-        return (
-            <TouchableOpacity style={styles.skipButton}>
-                <Text style={styles.skipButtonText}>Next</Text>
-            </TouchableOpacity>
-        );
-    };
-
-    const handleDoneButton = () => {
-        navigation.navigate("SignUp")
-    }
-    const handleSkipButton = () => {
-        navigation.navigate("Home")
+    const handleDoneClick = () => {
+        setCurrentIndex(0)
+        navigation.navigate("Login")
     }
 
     const renderSkipButton = () => {
         return (
-            <TouchableOpacity style={styles.skipButton} onPress={handleSkipButton}>
+            <TouchableOpacity style={styles.skipButton} onPress={() => navigation.navigate("Home")}>
                 <Text style={styles.skipButtonText}>Skip</Text>
             </TouchableOpacity>
         );
@@ -85,7 +76,7 @@ const IntroSlides = () => {
 
     const renderDoneButton = () => {
         return (
-            <TouchableOpacity style={styles.skipButton} onPress={handleDoneButton}>
+            <TouchableOpacity style={styles.skipButton} onPress={() => navigation.navigate("LoginScreen")}>
                 <Text style={styles.skipButtonText}>Done</Text>
             </TouchableOpacity>
         );
@@ -95,17 +86,16 @@ const IntroSlides = () => {
         <View style={{ flex: 1, justifyContent: 'center' }}>
             <StatusBar />
             <AppIntroSlider
+                ref={sliderRef}
                 data={slidesContent}
                 renderItem={renderSlides}
                 dotStyle={{ backgroundColor: color.Lilac2 }}
                 activeDotStyle={{ backgroundColor: color.Black }}
                 renderSkipButton={renderSkipButton}
-                // onSkip={renderSkipButton}
-                renderNextButton={renderNextButton}
                 renderDoneButton={renderDoneButton}
                 showDoneButton={true}
                 showPrevButton={false}
-                showNextButton={true}
+                showNextButton={false}
                 showSkipButton={true}
             />
         </View>

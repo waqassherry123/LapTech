@@ -23,7 +23,7 @@ const products = [
         price: 19.99,
         image: images.product1,
         details: "Professionals who expect the very best from their technology turn to the ThinkPad X1 line—not just for innovation and style, but for uncompromised performance.From ultralight laptops and 2-in -1s, to extreme power devices.",
-        colorOptions: [color.Blue3, color.Gray, color.black]
+        colorOptions: [color.Blue3, color.Gray, color.Black]
     },
     {
         id: 2,
@@ -31,7 +31,7 @@ const products = [
         price: 29.99,
         image: images.product2,
         details: "Dell Vostro is a Windows 10 laptop with a 15.50-inch display that has a resolution of 1366x768 pixels. It is powered by a Core i5 processor and it comes with 8GB of RAM",
-        colorOptions: [color.Blue3, color.Gray, color.black]
+        colorOptions: [color.Blue3, color.Gray, color.Black]
     },
     {
         id: 3,
@@ -39,7 +39,7 @@ const products = [
         price: 39.99,
         image: images.product3,
         details: "Dell Vostro is a Windows 10 laptop with a 15.50-inch display that has a resolution of 1366x768 pixels. It is powered by a Core i5 processor and it comes with 8GB of RAM",
-        colorOptions: [color.Blue3, color.Gray, color.black]
+        colorOptions: [color.Blue3, color.Gray, color.Black]
     },
     {
         id: 4,
@@ -47,7 +47,7 @@ const products = [
         price: 49.99,
         image: images.product4,
         details: "Dell Vostro is a Windows 10 laptop with a 15.50-inch display that has a resolution of 1366x768 pixels. It is powered by a Core i5 processor and it comes with 8GB of RAM",
-        colorOptions: [color.Blue3, color.Gray, color.black]
+        colorOptions: [color.Blue3, color.Gray, color.Black]
     },
     {
         id: 5,
@@ -55,12 +55,11 @@ const products = [
         price: 59.99,
         image: images.product5,
         details: "Dell Vostro is a Windows 10 laptop with a 15.50-inch display that has a resolution of 1366x768 pixels. It is powered by a Core i5 processor and it comes with 8GB of RAM",
-        colorOptions: [color.Blue3, color.Gray, color.black]
+        colorOptions: [color.Blue3, color.Gray, color.Black]
     },
 ]
 
 const Home = () => {
-
     const navigation = useNavigation();
     const [rbSheetOpen, setRbSheetOpen] = useState(false)
 
