@@ -14,7 +14,6 @@ import authSlice from "../IntroSlider/Redux/slice"
 import { useNavigation } from '@react-navigation/native'
 
 //screens
-import SignUp from './SignUp';
 import Home from '../../Home/Home';
 import Icon from '../../../assets/icons/Icon';
 import { useDispatch } from 'react-redux';
@@ -28,14 +27,13 @@ const LoginScreen = () => {
   const dispatch = useDispatch();
 
   const handleLogin = () => {
-    navigation.navigate("Home")
+    // navigation.navigate("Home")
     const params = {
       username: email,
       pwd: password,
       player_id: "b516f0fd-e6aa-4bbe-95bc-aa181b8781dd",
-    }
-
-    dispatch(authSlice.actions.login(params));
+     }
+     dispatch(authSlice.actions.login(params));
   }
 
   return (
@@ -100,12 +98,12 @@ const LoginScreen = () => {
       <View style={styles.socialButtonsContainer}>
         {/* Facebook button */}
         <TouchableOpacity >
-          <Image source={facebook} style={[styles.logo, { height: hp(10), width: wp(20) }]} />
+          <Image source={facebook} style={[styles.logo, { height: hp(8.5), width: wp(18.5) }]} />
         </TouchableOpacity>
 
         {/* Google button */}
         <TouchableOpacity >
-          <Image source={google} style={[styles.logo, { height: hp(10.5), width: wp(20.5) }]} />
+          <Image source={google} style={[styles.logo, { height: hp(13), width: wp(20.5) }]} />
         </TouchableOpacity>
       </View>
 
@@ -174,6 +172,7 @@ const styles = StyleSheet.create({
   socialButtonsContainer: {
     flexDirection: 'row',
     marginBottom: 20,
+    alignItems:"center"
   },
   facebookButton: {
     backgroundColor: color.White,

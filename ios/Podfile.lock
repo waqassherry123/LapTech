@@ -329,12 +329,8 @@ PODS:
   - React-jsinspector (0.71.11)
   - React-logger (0.71.11):
     - glog
-  - react-native-safe-area-context (4.6.3):
-    - RCT-Folly
-    - RCTRequired
-    - RCTTypeSafety
+  - react-native-safe-area-context (4.7.1):
     - React-Core
-    - ReactCommon/turbomodule/core
   - react-native-slider (4.4.2):
     - React-Core
   - React-perflogger (0.71.11)
@@ -421,14 +417,16 @@ PODS:
     - React-jsi (= 0.71.11)
     - React-logger (= 0.71.11)
     - React-perflogger (= 0.71.11)
-  - RNGestureHandler (2.12.0):
+  - RNCAsyncStorage (1.19.1):
     - React-Core
-  - RNScreens (3.22.0):
+  - RNGestureHandler (2.12.1):
+    - React-Core
+  - RNScreens (3.23.0):
     - React-Core
     - React-RCTImage
-  - RNSVG (13.9.0):
+  - RNSVG (13.10.0):
     - React-Core
-  - SocketRocket (0.6.0)
+  - SocketRocket (0.6.1)
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -494,6 +492,7 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
@@ -588,6 +587,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/runtimeexecutor"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNCAsyncStorage:
+    :path: "../node_modules/@react-native-async-storage/async-storage"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
   RNScreens:
@@ -631,7 +632,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 18b5b33c5f2687a784a61bc8176611b73524ae77
   React-jsinspector: b6ed4cb3ffa27a041cd440300503dc512b761450
   React-logger: 186dd536128ae5924bc38ed70932c00aa740cd5b
-  react-native-safe-area-context: 36cc67648134e89465663b8172336a19eeda493d
+  react-native-safe-area-context: 9697629f7b2cda43cf52169bb7e0767d330648c2
   react-native-slider: 33b8d190b59d4f67a541061bb91775d53d617d9d
   React-perflogger: e706562ab7eb8eb590aa83a224d26fa13963d7f2
   React-RCTActionSheet: 57d4bd98122f557479a3359ad5dad8e109e20c5a
@@ -646,10 +647,11 @@ SPEC CHECKSUMS:
   React-RCTVibration: f09f08de63e4122deb32506e20ca4cae6e4e14c1
   React-runtimeexecutor: 4817d63dbc9d658f8dc0ec56bd9b83ce531129f0
   ReactCommon: 08723d2ed328c5cbcb0de168f231bc7bae7f8aa1
-  RNGestureHandler: dec4645026e7401a0899f2846d864403478ff6a5
-  RNScreens: 68fd1060f57dd1023880bf4c05d74784b5392789
-  RNSVG: 53c661b76829783cdaf9b7a57258f3d3b4c28315
-  SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
+  RNCAsyncStorage: f47fe18526970a69c34b548883e1aeceb115e3e1
+  RNGestureHandler: c0d04458598fcb26052494ae23dda8f8f5162b13
+  RNScreens: 6a8a3c6b808aa48dca1780df7b73ea524f602c63
+  RNSVG: 80584470ff1ffc7994923ea135a3e5ad825546b9
+  SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   Yoga: f7decafdc5e8c125e6fa0da38a687e35238420fa
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 

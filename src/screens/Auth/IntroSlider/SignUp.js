@@ -14,7 +14,6 @@ import Icon from '../../../assets/icons/Icon'
 import { useNavigation } from '@react-navigation/native'
 
 //screens
-import LoginScreen from './login'
 import Button from '../../../components/commons/Button'
 import { style } from '../../../utils/globalStyles'
 
@@ -52,7 +51,7 @@ const SignUp = () => {
                     value={name}
                     placeholder="Name"
                     placeholderTextColor="#aaaaaa"
-                    keyboardType="name"
+                    keyboardType="default"
                     autoCapitalize="none"
                     // autoCompleteType="email"
                     autoCorrect={false}

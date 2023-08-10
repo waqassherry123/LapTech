@@ -1,6 +1,6 @@
-import authFlow from '../screens/Auth/IntroSlider/Redux/saga';
-import { spawn } from 'redux-saga/effects';
+import authFlow from "../screens/Auth/IntroSlider/Redux/saga";
+import {spawn} from 'redux-saga/effects';
 
-export default function* rootSaga() {
+export default function* rootSaga () {
     yield spawn(authFlow)
 }
