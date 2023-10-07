@@ -10,6 +10,7 @@ import store from './src/Redux/Store';
 
 
 export default function index() {
+    console.log("index")
     return (
         <Provider store={store}>
             <App />
