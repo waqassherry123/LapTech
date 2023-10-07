@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
+import auth from '@react-native-firebase/auth'
 
 import Icon from '../assets/icons/Icon'
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from '../theme/metrics'
@@ -7,8 +8,16 @@ import { color } from '../theme/colors'
 import * as images from '../assets/images'
 import { fontWeight } from '../theme/fonts'
 import ProfileInfo from './Profile Cards/ProfileInfo'
+import * as space from '../components/commons/Spacers'
+import Button from '../components/commons/Button'
 
 const Profile = () => {
+    const signOut = () => {
+        auth()
+            .signOut()
+            .then(() => console.log("User signed out!"))
+
+    }
     return (
         <View style={styles.container}>
             {/* background Blob */}
@@ -34,6 +43,8 @@ const Profile = () => {
                 </TouchableOpacity>
             </View>
 
+            <space.s3 />
+
             {/* Profile Pic */}
             <View style={styles.picContainer}>
                 <View style={styles.background}>
@@ -41,13 +52,15 @@ const Profile = () => {
                 </View>
             </View>
 
+            <space.s3 />
+
             <View style={styles.picContainer}>
                 <Text style={styles.username}>Alexa Nikiforov</Text>
                 <Text>alexa@msn.com</Text>
             </View>
 
             {/* Profile Cards */}
-
+            <space.s1 />
             <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
                 <ProfileInfo
                     icon="ShoppingBag"
@@ -62,9 +75,10 @@ const Profile = () => {
                     heading="Reviews"
                     number="4.5K" />
             </View>
-
+            <space.s1 />
             {/* Personal Info */}
             <Text style={styles.info}>Personal Information</Text>
+            <space.s2 />
             <View style={styles.infoContainer}>
                 <View>
                     <Text style={styles.label}>Name :</Text>
@@ -80,6 +94,10 @@ const Profile = () => {
                     <Text style={styles.value}>5200</Text>
                     <Text style={styles.value}>(+1) 5484 4757 32</Text>
                 </View>
+            </View>
+            <space.s1 />
+            <View style={{ alignItems: "center" }}>
+                <Button title="Log Out" onClick={() => signOut()} />
             </View>
 
         </View>
@@ -114,7 +132,7 @@ const styles = StyleSheet.create({
     picContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginVertical: hp(2)
+        // marginVertical: hp(2)
     },
     blob: {
         position: 'absolute',
@@ -136,7 +154,6 @@ const styles = StyleSheet.create({
         fontSize: 22,
         fontWeight: '500',
         marginLeft: wp(3),
-        marginVertical: hp(3),
         color: color.Black,
     },
     infoContainer: {

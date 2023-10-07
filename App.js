@@ -123,16 +123,6 @@ function TabNavigator() {
           ),
         }}
       />
-      <Tab.Screen
-        name="MyCart"
-        component={MyCart}
-        options={{
-          tabBarIcon: ({ size, focused }) => (
-            <Icon name="Cart" fill={focused ? color.Default : "tranparent"} size={size} />
-          ),
-        }}
-      />
-
     </Tab.Navigator>
   )
 }

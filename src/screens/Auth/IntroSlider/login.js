@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, SafeAreaView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, SafeAreaView, KeyboardAvoidingView, Platform } from 'react-native';
+import auth from '@react-native-firebase/auth'
 
 //utilities
 import * as spacer from '../../../utils/spacer'
@@ -7,39 +8,27 @@ import facebook from "../../../assets/icons/facebook.png";
 import google from "../../../assets/icons/google.png";
 import { color } from '../../../theme/colors';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from '../../../theme/metrics';
-import authSlice from "../IntroSlider/Redux/slice"
-
 
 //packages
 import { useNavigation } from '@react-navigation/native'
 
 //screens
-import Home from '../../Home/Home';
 import Icon from '../../../assets/icons/Icon';
-import { useDispatch } from 'react-redux';
-
 
 const LoginScreen = () => {
   const navigation = useNavigation()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
-  const dispatch = useDispatch();
-
   const handleLogin = () => {
-    // navigation.navigate("Home")
-    const params = {
-      username: email,
-      pwd: password,
-      player_id: "b516f0fd-e6aa-4bbe-95bc-aa181b8781dd",
-     }
-     dispatch(authSlice.actions.login(params));
+    auth()
+      .signInWithEmailAndPassword(email, password)
   }
 
   return (
     <SafeAreaView style={styles.container}>
+
       {/* Logo */}
-      {/* <Image source={logo} style={styles.logo} /> */}
       <Icon name="Logo" height={wp(20)}
         width={wp(20)}
         style={[
@@ -47,6 +36,7 @@ const LoginScreen = () => {
             marginBottom: "10%"
           },
         ]} />
+
       {/* Email input */}
       <View style={styles.inputContainer}>
         <TextInput
@@ -76,32 +66,22 @@ const LoginScreen = () => {
           onChangeText={text => setPassword(text)}
         />
       </View>
-
-      {/* Forgot password text */}
       <TouchableOpacity>
         <Text style={styles.forgotPassword}>Forgot Password?</Text>
       </TouchableOpacity>
 
       {/* Login button */}
-      <TouchableOpacity style={styles.loginButton}
-
-        onPress={() =>
-          handleLogin()
-        }>
+      <TouchableOpacity style={styles.loginButton} onPress={() => handleLogin()} >
         <Text style={styles.loginButtonText}>Login</Text>
       </TouchableOpacity>
 
-      {/* Or text */}
       <Text style={styles.orText}>Or</Text>
 
       {/* Social login buttons */}
       <View style={styles.socialButtonsContainer}>
-        {/* Facebook button */}
         <TouchableOpacity >
           <Image source={facebook} style={[styles.logo, { height: hp(8.5), width: wp(18.5) }]} />
         </TouchableOpacity>
-
-        {/* Google button */}
         <TouchableOpacity >
           <Image source={google} style={[styles.logo, { height: hp(13), width: wp(20.5) }]} />
         </TouchableOpacity>
@@ -109,10 +89,9 @@ const LoginScreen = () => {
 
       {/* Signup text */}
       <TouchableOpacity>
-        <Text style={styles.signupText}
-          onPress={() =>
-            navigation.navigate('SignUp')
-          }>Don't have an account? Sign up</Text>
+        <Text style={styles.signupText} onPress={() => navigation.navigate('SignUp')}>
+          Don't have an account? Sign up
+        </Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -172,7 +151,7 @@ const styles = StyleSheet.create({
   socialButtonsContainer: {
     flexDirection: 'row',
     marginBottom: 20,
-    alignItems:"center"
+    alignItems: "center"
   },
   facebookButton: {
     backgroundColor: color.White,

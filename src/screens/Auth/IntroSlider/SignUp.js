@@ -53,7 +53,7 @@ const SignUp = () => {
                     value={email}
                     placeholder="Email"
                     placeholderTextColor="#aaaaaa"
-                    keyboardType="email-address"
+                    keyboardType="default"
                     autoCapitalize="none"
                     autoCompleteType="email"
                     autoCorrect={false}
