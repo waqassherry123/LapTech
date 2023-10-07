@@ -67,7 +67,7 @@ const SignUp = () => {
                     value={password}
                     placeholder="Password"
                     placeholderTextColor="#aaaaaa"
-                    keyboardType="password"
+                    keyboardType="default"
                     autoCapitalize="none"
                     autoCorrect={false}
                     onChangeText={text => setPassword(text)}
