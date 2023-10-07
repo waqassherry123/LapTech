@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1036121962681",
+    "project_id": "laptech-c621d",
+    "storage_bucket": "laptech-c621d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1036121962681:android:5a2fecf4a720899ac6c368",
+        "android_client_info": {
+          "package_name": "com.laptech"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1036121962681-lfpf4lrqsmdvfs2dair8btphbtr9ks35.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBR7zoL8wPzRjZwP0uW4qjg2mGoI-yjXwU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1036121962681-lfpf4lrqsmdvfs2dair8btphbtr9ks35.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

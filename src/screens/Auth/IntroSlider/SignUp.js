@@ -1,7 +1,7 @@
-import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, ToastAndroid } from 'react-native'
 import React, { useState } from 'react'
 import CheckBox from 'react-native-check-box'
-
+import auth from '@react-native-firebase/auth'
 
 //utilities
 import { color } from '../../../theme/colors'
@@ -22,22 +22,24 @@ import { style } from '../../../utils/globalStyles'
 
 const SignUp = () => {
     const navigation = useNavigation()
-    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [acceptedTerms, setAcceptedTerms] = useState(false);
 
     const handleCheckBoxChange = () => {
         setAcceptedTerms(!acceptedTerms);
     };
 
-    const handleSignUp = () => {
-
-        if (acceptedTerms) {
-
-        } else {
-
-        }
+    const handleSignIn = () => {
+        auth()
+            .createUserWithEmailAndPassword(email, password)
+            .then(() => {
+                ToastAndroid.show("Account Created", ToastAndroid.SHORT)
+            })
+            .catch((error) => {
+                console.error('Error signing up:', error);
+            });
     };
 
     return (
@@ -45,20 +47,6 @@ const SignUp = () => {
             <Icon name="Logo" width={wp(25)} height={hp(10)} />
             <Text style={styles.signUp}>Sign Up</Text>
             <spacer.s5 />
-            <View style={styles.inputContainer}>
-                <TextInput
-                    style={styles.input}
-                    value={name}
-                    placeholder="Name"
-                    placeholderTextColor="#aaaaaa"
-                    keyboardType="default"
-                    autoCapitalize="none"
-                    // autoCompleteType="email"
-                    autoCorrect={false}
-                    onChangeText={text => setName(text)}
-                />
-            </View>
-
             <View style={styles.inputContainer}>
                 <TextInput
                     style={styles.input}
@@ -86,6 +74,19 @@ const SignUp = () => {
                 />
             </View>
 
+            <View style={styles.inputContainer}>
+                <TextInput
+                    style={styles.input}
+                    value={confirmPassword}
+                    placeholder="Confirm Password"
+                    placeholderTextColor="#aaaaaa"
+                    keyboardType="default"
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    onChangeText={text => setConfirmPassword(text)}
+                />
+            </View>
+
             <View style={styles.checkboxContainer}>
                 <CheckBox
                     value={acceptedTerms}
@@ -105,7 +106,7 @@ const SignUp = () => {
             </View>
 
             <spacer.s2 />
-            <Button title="Sign Up" />
+            <Button title="Sign Up" onClick={() => handleSignIn()} />
             <spacer.s2 />
 
             {/* login text */}

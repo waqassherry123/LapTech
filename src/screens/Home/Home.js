@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, FlatList, SafeAreaView } from 'react-native'
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -14,6 +14,8 @@ import Icon from '../../assets/icons/Icon'
 //packages
 import Sample from './Modal/Sample'
 import ProductDetailsScreen from './ProductDetailsScreen';
+import { useDispatch } from 'react-redux';
+import Slice from './Redux/slice'
 
 
 const products = [
@@ -62,7 +64,10 @@ const products = [
 const Home = () => {
     const navigation = useNavigation();
     const [rbSheetOpen, setRbSheetOpen] = useState(false)
-
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(Slice.actions.getProducts(products))
+    }, [])
     const handleProductPress = (product) => {
         navigation.navigate('ProductDetailsScreen', { product });
     };
