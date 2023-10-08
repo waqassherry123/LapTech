@@ -10,25 +10,26 @@ import Card from './Checkout Cards/card'
 import BillingInfoCard from './Checkout Cards/BillingInfoCard'
 
 
-const Checkout = () => {
+const Checkout = ({ route }) => {
+    const { subTotal } = route.params
     const navigation = useNavigation()
 
     return (
         <View style={StyleSheet.container}>
             <SafeAreaView>
                 <Header title="Checkout" onBackPress={() => navigation.goBack()} />
-                <View style={{ marginLeft: wp(6) ,marginVertical:hp(2)}}>
+                <View style={{ marginLeft: wp(6), marginVertical: hp(2) }}>
                     <Text style={{ fontSize: wp(5), fontWeight: '600', }}>Delivery address</Text>
                 </View>
                 <View style={styles.card}>
                     <Card />
                     <Card />
                 </View>
-                <View style={{ marginLeft: wp(6) ,marginVertical:hp(2)}}>
+                <View style={{ marginLeft: wp(6), marginVertical: hp(2) }}>
                     <Text style={{ fontSize: wp(5), fontWeight: '600', }}>Billing information</Text>
                 </View>
                 <View>
-                <BillingInfoCard />
+                    <BillingInfoCard subTotal={subTotal} />
                 </View>
 
 

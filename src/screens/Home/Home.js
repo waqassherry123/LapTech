@@ -24,6 +24,7 @@ const products = [
         name: 'Lenovo X11',
         price: 19.99,
         image: images.product1,
+        quantity: 1,
         details: "Professionals who expect the very best from their technology turn to the ThinkPad X1 line—not just for innovation and style, but for uncompromised performance.From ultralight laptops and 2-in -1s, to extreme power devices.",
         colorOptions: [color.Blue3, color.Gray, color.Black]
     },
@@ -32,6 +33,7 @@ const products = [
         name: 'Dell Vostro',
         price: 29.99,
         image: images.product2,
+        quantity: 1,
         details: "Dell Vostro is a Windows 10 laptop with a 15.50-inch display that has a resolution of 1366x768 pixels. It is powered by a Core i5 processor and it comes with 8GB of RAM",
         colorOptions: [color.Blue3, color.Gray, color.Black]
     },
@@ -40,6 +42,7 @@ const products = [
         name: 'HP Pavilion',
         price: 39.99,
         image: images.product3,
+        quantity: 1,
         details: "Dell Vostro is a Windows 10 laptop with a 15.50-inch display that has a resolution of 1366x768 pixels. It is powered by a Core i5 processor and it comes with 8GB of RAM",
         colorOptions: [color.Blue3, color.Gray, color.Black]
     },
@@ -48,6 +51,7 @@ const products = [
         name: 'Macbook Pro 2021',
         price: 49.99,
         image: images.product4,
+        quantity: 1,
         details: "Dell Vostro is a Windows 10 laptop with a 15.50-inch display that has a resolution of 1366x768 pixels. It is powered by a Core i5 processor and it comes with 8GB of RAM",
         colorOptions: [color.Blue3, color.Gray, color.Black]
     },
@@ -56,6 +60,7 @@ const products = [
         name: 'TreavelMate',
         price: 59.99,
         image: images.product5,
+        quantity: 1,
         details: "Dell Vostro is a Windows 10 laptop with a 15.50-inch display that has a resolution of 1366x768 pixels. It is powered by a Core i5 processor and it comes with 8GB of RAM",
         colorOptions: [color.Blue3, color.Gray, color.Black]
     },

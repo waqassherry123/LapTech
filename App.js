@@ -110,7 +110,7 @@ function TabNavigator() {
         component={Home}
         options={{
           tabBarIcon: ({ size, focused }) => (
-            <Icon name="Home" fill={focused ? color.Default : "tranparent"} size={size} />
+            <Icon name="Home" fill={focused ? color.Default : "transparent"} size={size} />
           ),
         }}
       />
@@ -119,7 +119,7 @@ function TabNavigator() {
         component={Profile}
         options={{
           tabBarIcon: ({ size, focused }) => (
-            <Icon name="Profile" fill={focused ? color.Default : "tranparent"} size={size} />
+            <Icon name="Profile" fill={focused ? color.Default : "transparent"} size={size} />
           ),
         }}
       />

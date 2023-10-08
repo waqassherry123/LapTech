@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, StyleSheet, Image, TouchableOpacity } from 'react-native'
+import { View, Text, SafeAreaView, StyleSheet, Image, TouchableOpacity, FlatList } from 'react-native'
 import React, { useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 
@@ -7,57 +7,86 @@ import Header from '../components/commons/Header'
 import Button from '../components/commons/Button'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from '../theme/metrics'
 import { color } from '../theme/colors'
+import { useSelector } from 'react-redux'
+import Slice from './Home/Redux/slice'
 
-
-
-
-const MyCart = ({ route }) => {
+const MyCart = () => {
     const navigation = useNavigation()
-    const { product } = route.params;
+    const { cart } = useSelector(state => state.home)
+    const [cartItems, setCartItems] = useState(cart);
 
-    const [quantity, setQuantity] = useState(0);
-
-    const handleIncrement = () => {
-        setQuantity(quantity + 1);
+    const handleIncrement = (item) => {
+        const updatedCart = cartItems.map((cartItem) => {
+            if (cartItem.id === item.id) {
+                return { ...cartItem, quantity: cartItem.quantity + 1 };
+            } else {
+                return cartItem;
+            }
+        });
+        setCartItems(updatedCart);
     };
 
-    const handleDecrement = () => {
-        if (quantity > 0) {
-            setQuantity(quantity - 1);
-        }
+    const handleDecrement = (item) => {
+        const updatedCart = cartItems.map((cartItem) => {
+            if (cartItem.id === item.id && cartItem.quantity > 0) {
+                return { ...cartItem, quantity: cartItem.quantity - 1 };
+            }
+            return cartItem;
+        });
+        setCartItems(updatedCart);
     };
+
+    const calculateSubTotal = () => {
+        let totalPrice = 0;
+        cartItems.forEach((item) => {
+            totalPrice += item.price * item.quantity;
+        });
+        return totalPrice;
+    };
+
+    const subTotal = calculateSubTotal();
+
+    const renderItem = (product) => {
+        return (
+            <View style={styles.cartContainer}>
+                <Image source={product.image} style={styles.image} />
+                <View style={styles.infoContainer}>
+                    <View style={styles.textContainer}>
+                        <Text style={styles.name}>{product.name}</Text>
+                        <Text style={styles.price}>${product.price * product.quantity}</Text>
+                    </View>
+                    <View>
+                        <View style={styles.quantityContainer}>
+                            <TouchableOpacity style={styles.button} onPress={() => handleDecrement(product)}>
+                                <Text style={styles.buttonText}>-</Text>
+                            </TouchableOpacity>
+                            <Text style={styles.quantity}>{product.quantity}</Text>
+                            <TouchableOpacity style={styles.button} onPress={() => handleIncrement(product)}>
+                                <Text style={styles.buttonText}>+</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </View>
+            </View>
+        )
+    }
 
 
     return (
         <View style={StyleSheet.container}>
             <SafeAreaView>
                 <Header title="My Cart" onBackPress={() => navigation.goBack()} />
-
-                <View style={styles.cartContainer}>
-                    <Image source={product.image} style={styles.image} />
-                    <View style={styles.infoContainer}>
-                        <View style={styles.textContainer}>
-                            <Text style={styles.name}>{product.name}</Text>
-                            <Text style={styles.price}>${product.price}</Text>
-                        </View>
-                        <View style={styles.quantityContainer}>
-                            <TouchableOpacity style={styles.button} onPress={handleDecrement}>
-                                <Text style={styles.buttonText}>-</Text>
-                            </TouchableOpacity>
-                            <Text style={styles.quantity}>{quantity}</Text>
-                            <TouchableOpacity style={styles.button} onPress={handleIncrement}>
-                                <Text style={styles.buttonText}>+</Text>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                </View>
-
+                <FlatList
+                    data={cartItems}
+                    keyExtractor={(item, index) => index.toString()}
+                    renderItem={({ item }) => renderItem(item)}
+                />
                 <View style={styles.subTotal}>
                     <Text style={styles.subtotalText}>Subtotal  :</Text>
-                    <Text style={styles.subtotalPrice}>$740</Text>
+                    <Text style={styles.subtotalPrice}>${subTotal}</Text>
                 </View>
                 <View style={{ alignItems: 'center' }}>
-                    <Button title="Checkout" onClick={() => navigation.navigate("Checkout")} />
+                    <Button title="Checkout" onClick={() => navigation.navigate("Checkout", { subTotal })} />
                 </View>
             </SafeAreaView>
         </View>
@@ -138,8 +167,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: color.Black,
         fontWeight: '600',
-    }
-
+    },
 })
 
 export default MyCart

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Image, Text, StyleSheet, SafeAreaView } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Image, Text, StyleSheet, SafeAreaView, Alert, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 
 //components
@@ -8,17 +8,36 @@ import Button from '../../components/commons/Button';
 import Icon from '../../assets/icons/Icon';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from '../../theme/metrics';
 import * as spacer from '../../utils/spacer'
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useDispatch, useSelector } from 'react-redux';
+import Slice from './Redux/slice';
 
 
 const ProductDetailsScreen = ({ route }) => {
-    const { product } = route.params;
-    const navigation = useNavigation()
-
+    const { product } = route.params || {};
+    const navigation = useNavigation();
+    const dispatch = useDispatch();
+    const { cart } = useSelector(state => state.home)
     const [isFavorite, setIsFavorite] = useState(false);
 
     const handleFavoritePress = () => {
         setIsFavorite(!isFavorite);
+    };
+
+    const handleAddToCartPress = () => {
+        if (!product) {
+            console.error("Product is not defined");
+            return;
+        }
+
+        const isProductInCart = cart.some((item) => item.id === product.id);
+        if (isProductInCart) {
+            Alert.alert("Product is already in the cart");
+        } else {
+            // If the product is not in the cart, add it
+            console.log(product);
+            dispatch(Slice.actions.addToCart([...cart, product]));
+            navigation.navigate("MyCart");
+        }
     };
 
     return (
@@ -77,7 +96,7 @@ const ProductDetailsScreen = ({ route }) => {
                     </View>
                     <spacer.s3 />
                     <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                        <Button title="Add to Cart" onClick={() => navigation.navigate("MyCart", { product })} />
+                        <Button title="Add to Cart" onClick={() => handleAddToCartPress()} />
                     </View>
                     <spacer.s3 />
                 </View>

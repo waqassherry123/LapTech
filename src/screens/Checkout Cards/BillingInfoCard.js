@@ -2,21 +2,22 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { color } from '../../theme/colors';
 
-const BillingInfoCard = () => {
+const BillingInfoCard = (props) => {
+  const deliveryFee = 5;
   return (
     <View style={styles.card}>
       <View style={styles.row}>
         <Text style={styles.text}>Delivery fee:</Text>
-        <Text style={styles.price}>$5</Text>
+        <Text style={styles.price}>${deliveryFee}</Text>
       </View>
       <View style={styles.row}>
         <Text style={styles.text}>SubTotal:</Text>
-        <Text style={styles.price}>$5</Text>
+        <Text style={styles.price}>${props.subTotal}</Text>
       </View>
       <View style={styles.line} />
       <View style={styles.row}>
         <Text style={styles.text}>Total:</Text>
-        <Text style={styles.price}>$5</Text>
+        <Text style={styles.price}>${props.subTotal + deliveryFee}</Text>
       </View>
     </View>
   );
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 16,
-    color:color.Gray
+    color: color.Gray
   },
   price: {
     fontSize: 16,
