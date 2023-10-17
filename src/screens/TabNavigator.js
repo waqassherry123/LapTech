@@ -6,7 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 //Screens
 import Home from './Home/Home';
-import Profile from './Profile';
+import Profile from './Profile/Profile';
 import Checkout from './Checkout';
 
 

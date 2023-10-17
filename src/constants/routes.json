@@ -1,0 +1,9 @@
+{
+    "HOME": "home",
+    "LOADING": "loading",
+    "LOGIN": "login",
+
+    "PROFILE_HOME": "profile-home",
+    "PROFILE_MAIN": "profile-main",
+    "PROFILE_SETTINGS": "profile-settings"
+}

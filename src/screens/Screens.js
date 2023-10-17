@@ -7,7 +7,7 @@ import ProductDetailsScreen from './Home/ProductDetailsScreen';
 import MyCart from './MyCart';
 import Checkout from './Checkout';
 import PaymentDoneScreen from './PaymentProcess';
-import Profile from './Profile';
+import Profile from './Profile/Profile';
 
 export {
     IntroSlides,
