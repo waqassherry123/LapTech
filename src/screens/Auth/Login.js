@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, SafeAreaView, KeyboardAvoidingView, Platform } from 'react-native';
-import auth from '@react-native-firebase/auth'
-
-//utilities
-import * as spacer from '../../../utils/spacer'
-import facebook from "../../../assets/icons/facebook.png";
-import google from "../../../assets/icons/google.png";
-import { color } from '../../../theme/colors';
-import { heightPercentageToDP as hp, widthPercentageToDP as wp } from '../../../theme/metrics';
-
 //packages
+import auth from '@react-native-firebase/auth'
 import { useNavigation } from '@react-navigation/native'
 
-//screens
-import Icon from '../../../assets/icons/Icon';
+//utilities
+import * as spacer from '../../utils/spacer'
+import facebook from "../../assets/icons/facebook.png";
+import google from "../../assets/icons/google.png";
+import { color } from '../../theme/colors';
+import { heightPercentageToDP as hp, widthPercentageToDP as wp } from '../../theme/metrics';
+import * as ROUTES  from "../../constants/routes.json"
 
-const LoginScreen = () => {
+//screens
+import Icon from '../../assets/icons/Icon';
+
+const Login = () => {
   const navigation = useNavigation()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -89,7 +89,7 @@ const LoginScreen = () => {
 
       {/* Signup text */}
       <TouchableOpacity>
-        <Text style={styles.signupText} onPress={() => navigation.navigate('SignUp')}>
+        <Text style={styles.signupText} onPress={() => navigation.navigate(ROUTES.SIGN_UP)}>
           Don't have an account? Sign up
         </Text>
       </TouchableOpacity>
@@ -165,4 +165,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default Login;

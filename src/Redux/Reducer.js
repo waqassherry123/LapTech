@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import authSlice from '../screens/Auth/IntroSlider/Redux/slice';
+import authSlice from '../screens/Auth/Redux/slice';
 import HomeSlice from '../screens/Home/Redux/slice'
 
 const rootReducer = combineReducers({

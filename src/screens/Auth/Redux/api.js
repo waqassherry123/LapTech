@@ -1,4 +1,4 @@
-import axios from "../../../../../axios";
+import axios from "../../../../axios";
 
 //base url
 const baseURL = 'http://ec2-54-176-7-27.us-west-1.compute.amazonaws.com/api2/';

@@ -21,14 +21,15 @@ import auth from '@react-native-firebase/auth'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "../../LapTech/src/theme/metrics"
 
 //screens 
+import * as AuthScreens from "./src/screens/Auth"
 import IntroSlides from './src/screens/Auth/IntroSlider/IntroSlides';
-import SignUp from './src/screens/Auth/IntroSlider/SignUp';
+import SignUp from './src/screens/Auth/SignUp';
 import Home from './src/screens/Home/Home';
 import ProductDetailsScreen from './src/screens/Home/ProductDetailsScreen';
 import MyCart from './src/screens/MyCart';
 import Checkout from './src/screens/Checkout';
 import PaymentDoneScreen from './src/screens/PaymentProcess';
-import LoginScreen from './src/screens/Auth/IntroSlider/login';
+// import LoginScreen from './src/screens/Auth/Login';
 import Profile from './src/screens/Profile/Profile';
 import Icon from './src/assets/icons/Icon';
 import { color } from './src/theme/colors';
@@ -54,47 +55,6 @@ export const tabBarStyle = {
   paddingVertical: 0,
   marginTop: 0,
 }
-
-const CusotmTabBarButton = ({ containerStyle, isFloat, children, onPress }) => {
-  if (isFloat) {
-    return (
-      <View style={{ flex: 1, alignItems: 'center' }}>
-        <Icon
-          name="Home"
-          fill={color.Default}
-        />
-        <TouchableOpacity
-          style={{
-            position: 'absolute',
-            top: -40,
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: 60,
-            height: 60,
-            borderRadius: 30,
-            backgroundColor: color.primary,
-          }}
-          onPress={onPress}>
-          {children}
-        </TouchableOpacity>
-      </View>
-    );
-  } else {
-    return (
-      <TouchableWithoutFeedback onPress={onPress}>
-        <View
-          style={{
-            flex: 1,
-            height: 60,
-            backgroundColor: color.Gray,
-            ...containerStyle,
-          }}>
-          {children}
-        </View>
-      </TouchableWithoutFeedback>
-    );
-  }
-};
 
 function TabNavigator() {
   return (
@@ -161,24 +121,50 @@ function App() {
         />
         <NavigationContainer>
           <Stack.Navigator>
-            {
-              user ? (
-                <Stack.Screen name='Tab' component={TabNavigator} options={{ headerShown: false }} />
-              )
-                :
-                (
-                  <>
-                    <Stack.Screen name='IntroSlides' component={IntroSlides} options={{ headerShown: false }} />
-                    <Stack.Screen name='SignUp' component={SignUp} options={{ headerShown: false }} />
-                    <Stack.Screen name='LoginScreen' component={LoginScreen} options={{ headerShown: false }} />
-                  </>
-                )
-            }
-            <Stack.Screen name='Home' component={Home} options={{ headerShown: false }} />
-            <Stack.Screen name='ProductDetailsScreen' component={ProductDetailsScreen} options={{ headerShown: false }} />
-            <Stack.Screen name='MyCart' component={MyCart} options={{ headerShown: false }} />
-            <Stack.Screen name='Checkout' component={Checkout} options={{ headerShown: false }} />
-            <Stack.Screen name='PaymentDoneScreen' component={PaymentDoneScreen} options={{ headerShown: false }} />
+            {user ? (
+              <Stack.Screen
+                name="Tab"
+                component={TabNavigator}
+                options={{headerShown: false}}
+              />
+            ) : (
+              <Stack.Group screenOptions={{headerShown: false}}>
+                {/* <Stack.Screen name='IntroSlides' component={IntroSlides} options={{ headerShown: false }} /> */}
+                <Stack.Screen
+                  name={ROUTES.LOGIN}
+                  component={AuthScreens.Login}
+                />
+                <Stack.Screen
+                  name={ROUTES.SIGN_UP}
+                  component={AuthScreens.SignUp}
+                />
+              </Stack.Group>
+            )}
+            <Stack.Screen
+              name="Home"
+              component={Home}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="ProductDetailsScreen"
+              component={ProductDetailsScreen}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="MyCart"
+              component={MyCart}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="Checkout"
+              component={Checkout}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="PaymentDoneScreen"
+              component={PaymentDoneScreen}
+              options={{headerShown: false}}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaProvider>

@@ -1,8 +1,8 @@
 import { put, call, takeEvery, all } from 'redux-saga/effects';
 import authSlice from './slice';
 import authApi from './api';
-import storage from '../../../../utils/storage';
-import { navigate } from '../../../../utils/navigate';
+import storage from '../../../utils/storage';
+import { navigate } from '../../../utils/navigate';
 
 
 

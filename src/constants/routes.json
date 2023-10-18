@@ -1,7 +1,10 @@
 {
     "HOME": "home",
     "LOADING": "loading",
+
+    "AUTH_HOME": "auth-home",
     "LOGIN": "login",
+    "SIGN_UP": "sign-up",
 
     "PROFILE_HOME": "profile-home",
     "PROFILE_MAIN": "profile-main",
