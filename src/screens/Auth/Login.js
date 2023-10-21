@@ -6,13 +6,11 @@ import { useNavigation } from '@react-navigation/native'
 
 //utilities
 import * as spacer from '../../utils/spacer'
-import facebook from "../../assets/icons/facebook.png";
-import google from "../../assets/icons/google.png";
 import { color } from '../../theme/colors';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from '../../theme/metrics';
 import * as ROUTES  from "../../constants/routes.json"
 
-//screens
+// components
 import Icon from '../../assets/icons/Icon';
 
 const Login = () => {
@@ -80,10 +78,10 @@ const Login = () => {
       {/* Social login buttons */}
       <View style={styles.socialButtonsContainer}>
         <TouchableOpacity >
-          <Image source={facebook} style={[styles.logo, { height: hp(8.5), width: wp(18.5) }]} />
+          <Icon name="Facebook" height={hp(15)} width={wp(15)} style={styles.logo} />
         </TouchableOpacity>
         <TouchableOpacity >
-          <Image source={google} style={[styles.logo, { height: hp(13), width: wp(20.5) }]} />
+          <Icon name="Google" height={hp(15)} width={wp(15)} style={styles.logo} />
         </TouchableOpacity>
       </View>
 
@@ -151,7 +149,9 @@ const styles = StyleSheet.create({
   socialButtonsContainer: {
     flexDirection: 'row',
     marginBottom: 20,
-    alignItems: "center"
+    width: "35%",
+    alignItems: "center",
+    justifyContent: "space-between"
   },
   facebookButton: {
     backgroundColor: color.White,
