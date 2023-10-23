@@ -1,17 +1,16 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Alert,
-} from 'react-native';
-import React, {useState} from 'react';
+import {View, Text, StyleSheet, TouchableOpacity, Alert} from 'react-native';
+import React, {useEffect, useState} from 'react';
 
 // packages
 import CheckBox from 'react-native-check-box';
-import {OutlinedTextField} from "rn-material-ui-textfield"
+import {OutlinedTextField} from 'rn-material-ui-textfield';
 import auth from '@react-native-firebase/auth';
 import {useNavigation} from '@react-navigation/native';
+import {
+  GoogleSignin,
+  GoogleSigninButton,
+  statusCodes,
+} from '@react-native-google-signin/google-signin';
 
 //utilities
 import {color} from '../../theme/colors';
@@ -25,13 +24,11 @@ import Icon from '../../assets/icons/Icon';
 import * as ROUTES from '../../constants/routes.json';
 import useSignupForm from './hooks/useSignupForm';
 
-
 //screens
 import Button from '../../components/commons/Button';
 import {style} from '../../utils/globalStyles';
 
 const SignUp = () => {
-
   const {
     handleChange,
     handleBlur,
@@ -47,15 +44,43 @@ const SignUp = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [acceptedTerms, setAcceptedTerms] = useState(false);
+  const [googleDisabled, setGooglDisabled] = useState(false)
   // const [errors, setErrors] = useState({
   //   email: false,
   //   password: false,
   //   confirmPassword: false,
   // })
 
+  useEffect(() => {
+    GoogleSignin.configure()
+  }, [])
+
+  const handleGoogleSignIn = async () => {
+    try {
+      await GoogleSignin.hasPlayServices();
+      const userInfo = await GoogleSignin.signIn();
+      console.log("userInfo", userInfo)
+      // setState({ userInfo });
+    } catch (error) {
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+        // user cancelled the login flow
+        console.log("cancelled")
+      } else if (error.code === statusCodes.IN_PROGRESS) {
+        // operation (e.g. sign in) is in progress already
+        console.log("inn progress")
+      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+        // play services not available or outdated
+        console.log("google service not avaiable")
+      } else {
+        console.log("Error", error)
+        // some other error happened
+      }
+    }
+  }
+
   const handleSignIn = () => {
-    if(errors.email || errors.password || errors.confirmPassword) {
-      Alert.alert("one of the fields is incorrect")
+    if (errors.email || errors.password || errors.confirmPassword) {
+      Alert.alert('one of the fields is incorrect');
     } else {
     }
 
@@ -73,95 +98,75 @@ const SignUp = () => {
     <View style={styles.container}>
       <Icon name="Logo" width={wp(25)} height={hp(10)} />
       <Text style={styles.signUp}>Sign Up</Text>
-      
+
       <spacer.s5 />
-        <OutlinedTextField
-          containerStyle={{padding: 0, width: "90%", margin: 0,}}
-          inputContainerStyle={{ backgroundColor: color.White, padding: 0}}
-          lineWidth={0}
-          value={values.email}
-          label="Email"
-          placeholder="Email"
-          keyboardType="email-address"
-          maxWidth={25}
-          autoCapitalize="none"
-          onBlur={e => { handleBlur('email')(e) }}
-          error={Boolean(touched.email && errors.email)}
-          baseColor={color.White}
-          // tintColor={"#BBBBBB"}
-          onChangeText={handleChange("email")}
-        />
+      <OutlinedTextField
+        containerStyle={{padding: 0, width: '90%', margin: 0}}
+        inputContainerStyle={{backgroundColor: color.White, padding: 0}}
+        lineWidth={0}
+        value={values.email}
+        label="Email"
+        placeholder="Email"
+        keyboardType="email-address"
+        maxWidth={25}
+        autoCapitalize="none"
+        onBlur={e => {
+          handleBlur('email')(e);
+        }}
+        error={Boolean(touched.email && errors.email)}
+        baseColor={color.White}
+        // tintColor={"#BBBBBB"}
+        onChangeText={handleChange('email')}
+      />
 
-        <spacer.s1 />
-        <OutlinedTextField
-          containerStyle={{padding: 0, width: "90%", margin: 0,}}
-          inputContainerStyle={{ backgroundColor: color.White, padding: 0}}
-          lineWidth={0}
-          value={values.password}
-          label="Password"
-          placeholder="Password"
-          keyboardType="default"
-          maxWidth={25}
-          autoCapitalize="none"
-          secureTextEntry={true}
-          onBlur={e => { handleBlur('password')(e) }}
-          error={Boolean(touched.password && errors.password)}
-          baseColor={color.White}
-          // tintColor={"#BBBBBB"}
-          onChangeText={handleChange("password")}
-        />
+      <spacer.s1 />
+      <OutlinedTextField
+        containerStyle={{padding: 0, width: '90%', margin: 0}}
+        inputContainerStyle={{backgroundColor: color.White, padding: 0}}
+        lineWidth={0}
+        value={values.password}
+        label="Password"
+        placeholder="Password"
+        keyboardType="default"
+        maxWidth={25}
+        autoCapitalize="none"
+        secureTextEntry={true}
+        onBlur={e => {
+          handleBlur('password')(e);
+        }}
+        error={Boolean(touched.password && errors.password)}
+        baseColor={color.White}
+        // tintColor={"#BBBBBB"}
+        onChangeText={handleChange('password')}
+      />
 
-        <spacer.s1 />
-        <OutlinedTextField
-          containerStyle={{padding: 0, width: "90%", margin: 0,}}
-          inputContainerStyle={{ backgroundColor: color.White, padding: 0}}
-          lineWidth={0}
-          value={values.confirmPassword}
-          label="Confirm Password"
-          placeholder="Confirm Password"
-          keyboardType="default"
-          maxWidth={25}
-          autoCapitalize="none"
-          secureTextEntry={true}
-          onBlur={e => { handleBlur('confirmPassword')(e) }}
-          error={Boolean(touched.confirmPassword && errors.confirmPassword)}
-          baseColor={color.White}
-          // tintColor={"#BBBBBB"}
-          onChangeText={handleChange("confirmPassword")}
-        />
-
-      {/* <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.textInput}
-          value={password}
-          placeholder="Password"
-          placeholderTextColor="#aaaaaa"
-          keyboardType="default"
-          autoCapitalize="none"
-          secureTextEntry={true}
-          onChangeText={text => setPassword(text)}
-        />
-      </View> */}
-
-      {/* <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.textInput}
-          value={confirmPassword}
-          placeholder="Confirm Password"
-          placeholderTextColor="#aaaaaa"
-          keyboardType="default"
-          autoCapitalize="none"
-          secureTextEntry={true}
-          onChangeText={text => setConfirmPassword(text)}
-        />
-      </View> */}
+      <spacer.s1 />
+      <OutlinedTextField
+        containerStyle={{padding: 0, width: '90%', margin: 0}}
+        inputContainerStyle={{backgroundColor: color.White, padding: 0}}
+        lineWidth={0}
+        value={values.confirmPassword}
+        label="Confirm Password"
+        placeholder="Confirm Password"
+        keyboardType="default"
+        maxWidth={25}
+        autoCapitalize="none"
+        secureTextEntry={true}
+        onBlur={e => {
+          handleBlur('confirmPassword')(e);
+        }}
+        error={Boolean(touched.confirmPassword && errors.confirmPassword)}
+        baseColor={color.White}
+        // tintColor={"#BBBBBB"}
+        onChangeText={handleChange('confirmPassword')}
+      />
 
       <View style={styles.checkboxContainer}>
         <CheckBox
           value={acceptedTerms}
           onClick={() => setAcceptedTerms(!acceptedTerms)}
           isChecked={acceptedTerms}
-          checkBoxColor={"black"}
+          checkBoxColor={'black'}
         />
         <Text style={styles.label}>
           I accept all the
@@ -174,9 +179,14 @@ const SignUp = () => {
       <Button title="Sign Up" onClick={() => handleSubmit()} />
       <spacer.s2 />
 
-        <Text style={styles.signupText}>
-          or Signup with
-        </Text>
+      <Text style={styles.signupText}>or Signup with</Text>
+
+      <GoogleSigninButton
+        size={GoogleSigninButton.Size.Wide}
+        color={GoogleSigninButton.Color.Dark}
+        onPress={handleGoogleSignIn}
+        disabled={googleDisabled}
+/>
 
       {/* SignUp with facebook and google */}
       <View style={styles.iconsContainer}>
@@ -190,9 +200,9 @@ const SignUp = () => {
 
       <spacer.s2 />
       {/* login text */}
-        <Text onPress={() => navigation.navigate(ROUTES.LOGIN)}>
-          Already have an account? <Text style={[style.fourBold]}>Log In</Text>
-        </Text>
+      <Text onPress={() => navigation.navigate(ROUTES.LOGIN)}>
+        Already have an account? <Text style={[style.fourBold]}>Log In</Text>
+      </Text>
     </View>
   );
 };
@@ -227,11 +237,11 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   iconsContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    width: "35%"
-  }
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '35%',
+  },
 });
 
 export default SignUp;
