@@ -14,7 +14,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "1036121962681-lfpf4lrqsmdvfs2dair8btphbtr9ks35.apps.googleusercontent.com",
+          "client_id": "1036121962681-a88sot6nt8l01c24og0lrmiadc0h2iab.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.laptech",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "1036121962681-hjfv26s2qrja1osue1ss5hoh5hgq65jk.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -27,7 +35,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1036121962681-lfpf4lrqsmdvfs2dair8btphbtr9ks35.apps.googleusercontent.com",
+              "client_id": "1036121962681-hjfv26s2qrja1osue1ss5hoh5hgq65jk.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
