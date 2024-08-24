@@ -79,19 +79,16 @@ const SignUp = () => {
   }
 
   const handleSignIn = () => {
-    if (errors.email || errors.password || errors.confirmPassword) {
-      Alert.alert('one of the fields is incorrect');
-    } else {
-    }
 
-    // auth()
-    //   .createUserWithEmailAndPassword(email, password)
-    //   .then(() => {
-    //     ToastAndroid.show('Account Created', ToastAndroid.SHORT);
-    //   })
-    //   .catch(error => {
-    //     console.error('Error signing up:', error);
-    //   });
+      auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then(() => {
+          ToastAndroid.show('Account Created', ToastAndroid.SHORT);
+        })
+        .catch(error => {
+          console.error('Error signing up:', error);
+        });
+
   };
 
   return (
@@ -101,22 +98,20 @@ const SignUp = () => {
 
       <spacer.s5 />
       <OutlinedTextField
-        containerStyle={{padding: 0, width: '90%', margin: 0}}
-        inputContainerStyle={{backgroundColor: color.White, padding: 0}}
+        containerStyle={{ padding: 0, width: '90%', margin: 0 }}
+        inputContainerStyle={{ backgroundColor: color.White, padding: 0 }}
         lineWidth={0}
-        value={values.email}
+        value={email}
         label="Email"
         placeholder="Email"
         keyboardType="email-address"
         maxWidth={25}
         autoCapitalize="none"
-        onBlur={e => {
-          handleBlur('email')(e);
-        }}
-        error={Boolean(touched.email && errors.email)}
         baseColor={color.White}
         // tintColor={"#BBBBBB"}
-        onChangeText={handleChange('email')}
+        onChangeText={(text) => {
+          setEmail(text)
+        }}
       />
 
       <spacer.s1 />
@@ -124,20 +119,16 @@ const SignUp = () => {
         containerStyle={{padding: 0, width: '90%', margin: 0}}
         inputContainerStyle={{backgroundColor: color.White, padding: 0}}
         lineWidth={0}
-        value={values.password}
+        value={password}
         label="Password"
         placeholder="Password"
         keyboardType="default"
         maxWidth={25}
         autoCapitalize="none"
         secureTextEntry={true}
-        onBlur={e => {
-          handleBlur('password')(e);
-        }}
-        error={Boolean(touched.password && errors.password)}
         baseColor={color.White}
         // tintColor={"#BBBBBB"}
-        onChangeText={handleChange('password')}
+        onChangeText={(text) => setPassword(text)}
       />
 
       <spacer.s1 />
@@ -145,20 +136,16 @@ const SignUp = () => {
         containerStyle={{padding: 0, width: '90%', margin: 0}}
         inputContainerStyle={{backgroundColor: color.White, padding: 0}}
         lineWidth={0}
-        value={values.confirmPassword}
+        value={confirmPassword}
         label="Confirm Password"
         placeholder="Confirm Password"
         keyboardType="default"
         maxWidth={25}
         autoCapitalize="none"
         secureTextEntry={true}
-        onBlur={e => {
-          handleBlur('confirmPassword')(e);
-        }}
-        error={Boolean(touched.confirmPassword && errors.confirmPassword)}
         baseColor={color.White}
         // tintColor={"#BBBBBB"}
-        onChangeText={handleChange('confirmPassword')}
+        onChangeText={(text) => setConfirmPassword(text)}
       />
 
       <View style={styles.checkboxContainer}>
@@ -175,8 +162,8 @@ const SignUp = () => {
       </View>
 
       <spacer.s2 />
-      {/* <Button title="Sign Up" onClick={() => handleSignIn()} /> */}
-      <Button title="Sign Up" onClick={() => handleSubmit()} />
+      <Button title="Sign Up" onClick={() => handleSignIn()} />
+      {/* <Button title="Sign Up" onClick={() => handleSubmit()} /> */}
       <spacer.s2 />
 
       <Text style={styles.signupText}>or Signup with</Text>
