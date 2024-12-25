@@ -211,6 +211,7 @@ export const style = StyleSheet.create({
     fourBold: {
         fontSize: fontSize.font4,
         fontWeight: fontWeight.bold,
+        color: color.primary
     },
     fourFull: {
         fontSize: fontSize.font4,

@@ -7,6 +7,9 @@ import {
 //ATOMS
 // const Default = '#6C63FF';
 const Default = '#f47b53';
+const primary = '#02333C'
+const secondary = '#08535D'
+const tertiary = '#99BBC4'
 
 const lilac = '#979CFF';
 const lilac2 = '#B8BDFF';
@@ -36,6 +39,9 @@ const dkgray = '#888888';
 
 export const color = {
     Default: Default,
+    primary: primary,
+    secondary: secondary,
+    tertiary: tertiary,
     Lilac: lilac,
     Lilac2: lilac2,
     Lilac3: lilac3,

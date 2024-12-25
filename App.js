@@ -130,7 +130,7 @@ function App() {
               />
             ) : (
               <Stack.Group screenOptions={{headerShown: false}}>
-                {/* <Stack.Screen name='IntroSlides' component={IntroSlides} options={{ headerShown: false }} /> */}
+                <Stack.Screen name='IntroSlides' component={IntroSlides} options={{ headerShown: false }} />
                 <Stack.Screen
                   name={ROUTES.LOGIN}
                   component={AuthScreens.Login}

@@ -1,4 +1,4 @@
-import {View, Text, StyleSheet, TouchableOpacity, Alert} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Alert, SafeAreaView, TextInput} from 'react-native';
 import React, {useEffect, useState} from 'react';
 
 // packages
@@ -92,61 +92,52 @@ const SignUp = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.logo}>
       <Icon name="Logo" width={wp(25)} height={hp(10)} />
-      <Text style={styles.signUp}>Sign Up</Text>
+      </View>
+      <Text style={{ color: color.primary, fontSize: 28, fontWeight:'500', marginBottom:hp(3)}}>Sign Up</Text>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          value={email}
+          placeholder="Email"
+          placeholderTextColor="#aaaaaa"
+          keyboardType="email-address"
+          autoCapitalize="none"
+          autoCompleteType="email"
+          autoCorrect={false}
+          onChangeText={text => setEmail(text)}
+        />
+      </View>
 
-      <spacer.s5 />
-      <OutlinedTextField
-        containerStyle={{ padding: 0, width: '90%', margin: 0 }}
-        inputContainerStyle={{ backgroundColor: color.White, padding: 0 }}
-        lineWidth={0}
-        value={email}
-        label="Email"
-        placeholder="Email"
-        keyboardType="email-address"
-        maxWidth={25}
-        autoCapitalize="none"
-        baseColor={color.White}
-        // tintColor={"#BBBBBB"}
-        onChangeText={(text) => {
-          setEmail(text)
-        }}
-      />
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          value={password}
+          placeholder="Password"
+          placeholderTextColor="#aaaaaa"
+          secureTextEntry
+          autoCapitalize="none"
+          autoCompleteType="password"
+          autoCorrect={false}
+          onChangeText={text => setPassword(text)}
+        />
+      </View>
 
-      <spacer.s1 />
-      <OutlinedTextField
-        containerStyle={{padding: 0, width: '90%', margin: 0}}
-        inputContainerStyle={{backgroundColor: color.White, padding: 0}}
-        lineWidth={0}
-        value={password}
-        label="Password"
-        placeholder="Password"
-        keyboardType="default"
-        maxWidth={25}
-        autoCapitalize="none"
-        secureTextEntry={true}
-        baseColor={color.White}
-        // tintColor={"#BBBBBB"}
-        onChangeText={(text) => setPassword(text)}
-      />
-
-      <spacer.s1 />
-      <OutlinedTextField
-        containerStyle={{padding: 0, width: '90%', margin: 0}}
-        inputContainerStyle={{backgroundColor: color.White, padding: 0}}
-        lineWidth={0}
-        value={confirmPassword}
-        label="Confirm Password"
-        placeholder="Confirm Password"
-        keyboardType="default"
-        maxWidth={25}
-        autoCapitalize="none"
-        secureTextEntry={true}
-        baseColor={color.White}
-        // tintColor={"#BBBBBB"}
-        onChangeText={(text) => setConfirmPassword(text)}
-      />
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          value={confirmPassword}
+          placeholder="Confirm Password"
+          placeholderTextColor="#aaaaaa"
+          secureTextEntry
+          autoCapitalize="none"
+          autoCompleteType="password"
+          autoCorrect={false}
+          onChangeText={text => setConfirmPassword(text)}
+        />
+      </View>
 
       <View style={styles.checkboxContainer}>
         <CheckBox
@@ -162,42 +153,38 @@ const SignUp = () => {
       </View>
 
       <spacer.s2 />
-      <Button title="Sign Up" onClick={() => handleSignIn()} />
-      {/* <Button title="Sign Up" onClick={() => handleSubmit()} /> */}
-      <spacer.s2 />
+      <TouchableOpacity style={styles.signUpButton} onPress={() => handleSignIn()} >
+        <Text style={styles.signUpButtonText}>SignUp</Text>
+      </TouchableOpacity>
 
-      <Text style={styles.signupText}>or Signup with</Text>
-
-      <GoogleSigninButton
-        size={GoogleSigninButton.Size.Wide}
-        color={GoogleSigninButton.Color.Dark}
-        onPress={handleGoogleSignIn}
-        disabled={googleDisabled}
-/>
+      <Text style={styles.signupText}>Or</Text>
 
       {/* SignUp with facebook and google */}
-      <View style={styles.iconsContainer}>
-        <TouchableOpacity>
-          <Icon name="Facebook" width={wp(15)} height={hp(15)} />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Icon name="Google" width={wp(15)} height={hp(15)} />
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity style={{ flexDirection: 'row', backgroundColor: color.primary, width: '90%', justifyContent: 'center', alignItems: 'center', padding: wp(2), borderRadius: 30,  marginBottom: hp(1.5) }} >
+        <Icon name="Google" height={wp(7)} width={wp(7)} />
+        <Text style={[styles.signUpButtonText, { marginLeft: wp(3) }]}>Continue with Google</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={{ flexDirection: 'row', backgroundColor: color.primary, width: '90%', justifyContent: 'center', alignItems: 'center', padding: wp(2), borderRadius: 30, marginBottom: hp(1.5) }} >
+        <View style={{ backgroundColor: 'white', borderRadius: 1000 }}>
+          <Icon name="Facebook" height={wp(8)} width={wp(8)} />
+        </View>
+        <Text style={[styles.signUpButtonText, { marginLeft: wp(3) }]}>Continue with Facebook</Text>
+      </TouchableOpacity>
 
       <spacer.s2 />
       {/* login text */}
       <Text onPress={() => navigation.navigate(ROUTES.LOGIN)}>
         Already have an account? <Text style={[style.fourBold]}>Log In</Text>
       </Text>
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: hp(8),
+    // paddingTop: hp(8),
+    backgroundColor: color.tertiary,
     alignItems: 'center',
   },
   signUp: {
@@ -205,16 +192,19 @@ const styles = StyleSheet.create({
     fontSize: fontSize.font9,
     fontWeight: '600',
   },
-  signupText: {},
+  signupText: {
+    marginBottom: 10
+  },
   textInput: {
     borderRadius: wp(2),
     height: hp(5),
   },
   inputContainer: {
     backgroundColor: color.White,
-    // paddingHorizontal: 10,
+    borderRadius: 5,
+    paddingHorizontal: 10,
     marginBottom: 20,
-    width: '90%',
+    width: "90%"
   },
   checkboxContainer: {
     flexDirection: 'row',
@@ -228,6 +218,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     width: '35%',
+  },
+  signUpButton: {
+    backgroundColor: color.primary,
+    borderRadius: 30,
+    paddingVertical: hp(1.4),
+    marginBottom: 10,
+    width: '90%',
+  },
+  signUpButtonText: {
+    color: 'white',
+    fontWeight: '400',
+    fontSize: 16,
+    textAlign: 'center',
+  },
+  logo: {
+    marginVertical: 50,
+    borderRadius: wp(20),
   },
 });
 

@@ -10,6 +10,7 @@ import Button from '../../../components/commons/Button';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from '../../../theme/metrics';
 import { fontSize, fontWeight } from '../../../theme/fonts';
 import Icon from '../../../assets/icons/Icon';
+import ROUTES from '../../../constants/routes.json'
 
 
 
@@ -25,7 +26,7 @@ const IntroSlides = () => {
             text: 'A product is the item offered for a sale. A product can be a service or an item. It can be physical or in virtual or cyber form',
             logo: <Icon
                 name="ChooseProduct"
-                fill={color.Black}
+                fill={color.primary}
                 width={wp(80)}
                 height={hp(38)}
                 style={{ marginRight: wp(14), marginTop: hp(4) }}
@@ -68,7 +69,7 @@ const IntroSlides = () => {
 
     const renderSkipButton = () => {
         return (
-            <TouchableOpacity style={styles.skipButton} onPress={() => navigation.navigate("Home")}>
+            <TouchableOpacity style={styles.skipButton} onPress={() => navigation.navigate(ROUTES.LOGIN)}>
                 <Text style={styles.skipButtonText}>Skip</Text>
             </TouchableOpacity>
         );
@@ -76,7 +77,7 @@ const IntroSlides = () => {
 
     const renderDoneButton = () => {
         return (
-            <TouchableOpacity style={styles.skipButton} onPress={() => navigation.navigate("LoginScreen")}>
+            <TouchableOpacity style={styles.skipButton} onPress={() => navigation.navigate(ROUTES.LOGIN)}>
                 <Text style={styles.skipButtonText}>Done</Text>
             </TouchableOpacity>
         );
@@ -111,7 +112,7 @@ const styles = StyleSheet.create({
     },
     skipButtonText: {
         fontSize: 18,
-        color: color.Black,
+        color: color.primary,
     }
 })
 

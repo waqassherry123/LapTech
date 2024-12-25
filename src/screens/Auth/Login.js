@@ -27,13 +27,11 @@ const Login = () => {
     <SafeAreaView style={styles.container}>
 
       {/* Logo */}
-      <Icon name="Logo" height={wp(20)}
-        width={wp(20)}
-        style={[
-          {
-            marginBottom: "10%"
-          },
-        ]} />
+      <View style={styles.logo}>
+        <Icon name="Logo" height={wp(20)} width={wp(20)} />
+      </View>
+
+      <Text style={{ color: color.primary, fontSize: 28, fontWeight:'500', marginBottom:hp(5)}}>Welcome Back!</Text>
 
       {/* Email input */}
       <View style={styles.inputContainer}>
@@ -75,20 +73,22 @@ const Login = () => {
 
       <Text style={styles.orText}>Or</Text>
 
-      {/* Social login buttons */}
-      <View style={styles.socialButtonsContainer}>
-        <TouchableOpacity >
-          <Icon name="Facebook" height={hp(15)} width={wp(15)} style={styles.logo} />
-        </TouchableOpacity>
-        <TouchableOpacity >
-          <Icon name="Google" height={hp(15)} width={wp(15)} style={styles.logo} />
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity style={{ flexDirection: 'row', backgroundColor: color.primary, width: '90%', justifyContent: 'center', alignItems: 'center', padding: wp(2), borderRadius: 30, marginBottom: hp(1.5) }} >
+        <View style={{ backgroundColor: 'white', borderRadius: 1000 }}>
+          <Icon name="Facebook" height={wp(8)} width={wp(8)} />
+        </View>
+        <Text style={[styles.loginButtonText, { marginLeft: wp(3) }]}>Continue with Facebook</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={{ flexDirection: 'row', backgroundColor: color.primary, width: '90%', justifyContent: 'center', alignItems: 'center', padding: wp(2), borderRadius: 30 }} >
+        <Icon name="Google" height={wp(7)} width={wp(7)} />
+        <Text style={[styles.loginButtonText, { marginLeft: wp(3) }]}>Continue with Facebook</Text>
+      </TouchableOpacity>
 
       {/* Signup text */}
-      <TouchableOpacity>
-        <Text style={styles.signupText} onPress={() => navigation.navigate(ROUTES.SIGN_UP)}>
-          Don't have an account? Sign up
+      <TouchableOpacity style={{ marginTop: hp(5)}} onPress={() => navigation.navigate(ROUTES.SIGN_UP)}>
+        <Text style={styles.signupText}>
+          Don't have an account?
+          <Text style={{ fontWeight:'bold'}}> Sign up</Text>
         </Text>
       </TouchableOpacity>
     </SafeAreaView>
@@ -99,17 +99,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
-    // backgroundColor: color.White
+    // justifyContent: 'center',
+    backgroundColor: color.tertiary
   },
   logo: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 50,
+    marginVertical: 50,
+    borderRadius: wp(20),
   },
   inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
     backgroundColor: color.White,
     borderRadius: 5,
     paddingHorizontal: 10,
@@ -119,49 +116,37 @@ const styles = StyleSheet.create({
   inputIcon: {
     marginRight: 10,
   },
-  input: {
-    flex: 1,
-    height: 50,
-  },
   forgotPassword: {
     marginBottom: 20,
     color: color.Black,
     marginLeft: "60%"
   },
   loginButton: {
-    backgroundColor: '#f77951',
+    backgroundColor: color.primary,
     borderRadius: 30,
-    paddingVertical: 15,
+    paddingVertical: hp(1.4),
     marginBottom: 10,
-    width: '50%',
-    height: '7%',
+    width: '90%',
   },
   loginButtonText: {
     color: 'white',
-    fontWeight: 'bold',
+    fontWeight: '400',
     fontSize: 16,
     textAlign: 'center',
   },
   orText: {
-    marginVertical: 20,
-    color: '#aaaaaa',
+    marginVertical: 10,
+    color: color.primary,
   },
   socialButtonsContainer: {
-    flexDirection: 'row',
     marginBottom: 20,
-    width: "35%",
     alignItems: "center",
     justifyContent: "space-between"
-  },
-  facebookButton: {
-    backgroundColor: color.White,
-  },
-  googleButton: {
-    backgroundColor: '#db4a39',
   },
   signupText: {
     color: color.Black,
     textDecorationLine: 'underline',
+    marginTop: 30
   },
 });
 
