@@ -16,6 +16,8 @@ import {
   BottomTabBar,
 } from '@react-navigation/bottom-tabs';
 import auth from '@react-native-firebase/auth'
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { Settings } from 'react-native-fbsdk-next';
 
 //utilities
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "../../LapTech/src/theme/metrics"
@@ -108,6 +110,8 @@ function App() {
   }
 
   useEffect(() => {
+    GoogleSignin.configure()
+    Settings.initializeSDK();
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
     return subscriber;
   }, []);

@@ -8,7 +8,8 @@ import { useNavigation } from '@react-navigation/native'
 import * as spacer from '../../utils/spacer'
 import { color } from '../../theme/colors';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from '../../theme/metrics';
-import * as ROUTES  from "../../constants/routes.json"
+import { facebookSignIn, googleSignIn } from '../../../Firebase'  
+import ROUTES from '../../constants/routes.json'
 
 // components
 import Icon from '../../assets/icons/Icon';
@@ -31,7 +32,7 @@ const Login = () => {
         <Icon name="Logo" height={wp(20)} width={wp(20)} />
       </View>
 
-      <Text style={{ color: color.primary, fontSize: 28, fontWeight:'500', marginBottom:hp(5)}}>Welcome Back!</Text>
+      <Text style={{ color: color.primary, fontSize: 28, fontWeight: '500', marginBottom: hp(5) }}>Welcome Back!</Text>
 
       {/* Email input */}
       <View style={styles.inputContainer}>
@@ -73,22 +74,23 @@ const Login = () => {
 
       <Text style={styles.orText}>Or</Text>
 
-      <TouchableOpacity style={{ flexDirection: 'row', backgroundColor: color.primary, width: '90%', justifyContent: 'center', alignItems: 'center', padding: wp(2), borderRadius: 30, marginBottom: hp(1.5) }} >
+      <TouchableOpacity onPress={facebookSignIn} style={styles.fbSignIn} >
         <View style={{ backgroundColor: 'white', borderRadius: 1000 }}>
           <Icon name="Facebook" height={wp(8)} width={wp(8)} />
         </View>
         <Text style={[styles.loginButtonText, { marginLeft: wp(3) }]}>Continue with Facebook</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={{ flexDirection: 'row', backgroundColor: color.primary, width: '90%', justifyContent: 'center', alignItems: 'center', padding: wp(2), borderRadius: 30 }} >
+      <TouchableOpacity onPress={() => googleSignIn()} style={styles.googleSignin} >
         <Icon name="Google" height={wp(7)} width={wp(7)} />
-        <Text style={[styles.loginButtonText, { marginLeft: wp(3) }]}>Continue with Facebook</Text>
+        <Text style={[styles.loginButtonText, { marginLeft: wp(3) }]}>Continue with Google</Text>
       </TouchableOpacity>
 
+      <spacer.s3 />
       {/* Signup text */}
-      <TouchableOpacity style={{ marginTop: hp(5)}} onPress={() => navigation.navigate(ROUTES.SIGN_UP)}>
+      <TouchableOpacity onPress={() => navigation.navigate(ROUTES.SIGN_UP)}>
         <Text style={styles.signupText}>
           Don't have an account?
-          <Text style={{ fontWeight:'bold'}}> Sign up</Text>
+          <Text style={{ fontWeight: 'bold' }}> Sign up</Text>
         </Text>
       </TouchableOpacity>
     </SafeAreaView>
@@ -123,7 +125,7 @@ const styles = StyleSheet.create({
   },
   loginButton: {
     backgroundColor: color.primary,
-    borderRadius: 30,
+    borderRadius: 5,
     paddingVertical: hp(1.4),
     marginBottom: 10,
     width: '90%',
@@ -148,6 +150,24 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
     marginTop: 30
   },
+  googleSignin: { 
+    flexDirection: 'row', 
+    backgroundColor: color.primary, 
+    width: '90%', 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    padding: wp(2.5), 
+    borderRadius: 5 
+  },
+  fbSignIn: {
+    flexDirection: 'row',
+    backgroundColor: color.primary,
+    width: '90%', justifyContent: 'center',
+    alignItems: 'center',
+    padding: wp(2.5),
+    borderRadius: 5,
+    marginBottom: hp(1.5)
+  }
 });
 
 export default Login;

@@ -1,4 +1,4 @@
-import {View, Text, StyleSheet, TouchableOpacity, Alert, SafeAreaView, TextInput} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Alert, SafeAreaView, TextInput, ToastAndroid} from 'react-native';
 import React, {useEffect, useState} from 'react';
 
 // packages
@@ -11,6 +11,7 @@ import {
   GoogleSigninButton,
   statusCodes,
 } from '@react-native-google-signin/google-signin';
+import { facebookSignIn, googleSignIn } from '../../../Firebase';
 
 //utilities
 import {color} from '../../theme/colors';
@@ -154,24 +155,25 @@ const SignUp = () => {
 
       <spacer.s2 />
       <TouchableOpacity style={styles.signUpButton} onPress={() => handleSignIn()} >
-        <Text style={styles.signUpButtonText}>SignUp</Text>
+        <Text style={styles.signUpButtonText}>Sign Up</Text>
       </TouchableOpacity>
 
       <Text style={styles.signupText}>Or</Text>
 
       {/* SignUp with facebook and google */}
-      <TouchableOpacity style={{ flexDirection: 'row', backgroundColor: color.primary, width: '90%', justifyContent: 'center', alignItems: 'center', padding: wp(2), borderRadius: 30,  marginBottom: hp(1.5) }} >
+      <TouchableOpacity onPress={() => googleSignIn()} style={styles.googleSignIn} >
         <Icon name="Google" height={wp(7)} width={wp(7)} />
         <Text style={[styles.signUpButtonText, { marginLeft: wp(3) }]}>Continue with Google</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={{ flexDirection: 'row', backgroundColor: color.primary, width: '90%', justifyContent: 'center', alignItems: 'center', padding: wp(2), borderRadius: 30, marginBottom: hp(1.5) }} >
+
+      <TouchableOpacity onPress={() => facebookSignIn()} style={styles.googleSignIn} >
         <View style={{ backgroundColor: 'white', borderRadius: 1000 }}>
-          <Icon name="Facebook" height={wp(8)} width={wp(8)} />
+          <Icon name="Facebook" height={wp(7)} width={wp(7)} />
         </View>
-        <Text style={[styles.signUpButtonText, { marginLeft: wp(3) }]}>Continue with Facebook</Text>
+        <Text style={[styles.signUpButtonText, { marginLeft: wp(3) }]}>Continue with Google</Text>
       </TouchableOpacity>
 
-      <spacer.s2 />
+      <spacer.s6 />
       {/* login text */}
       <Text onPress={() => navigation.navigate(ROUTES.LOGIN)}>
         Already have an account? <Text style={[style.fourBold]}>Log In</Text>
@@ -221,8 +223,8 @@ const styles = StyleSheet.create({
   },
   signUpButton: {
     backgroundColor: color.primary,
-    borderRadius: 30,
-    paddingVertical: hp(1.4),
+    borderRadius: 5,
+    padding: wp(3),
     marginBottom: 10,
     width: '90%',
   },
@@ -233,9 +235,19 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   logo: {
-    marginVertical: 50,
+    marginVertical: 60,
     borderRadius: wp(20),
   },
+  googleSignIn: { 
+    flexDirection: 'row', 
+    backgroundColor: color.primary, 
+    width: '90%', 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    padding: wp(2.5), 
+    borderRadius: 5,  
+    marginBottom: hp(1.5) 
+  }
 });
 
 export default SignUp;

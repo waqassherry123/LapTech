@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">LapTech</string>
+    <string name="facebook_app_id">495705220197234</string>
+    <string name="fb_login_protocol_scheme">fb495705220197234</string>
+    <string name="facebook_client_token">2028750643b73abfaf9a319967ef710c</string>
 </resources>
