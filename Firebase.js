@@ -1,7 +1,7 @@
 import { AccessToken, LoginManager } from 'react-native-fbsdk-next';
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth'
-// import firestore from '@react-native-firebase/firestore';
+import firestore from '@react-native-firebase/firestore';
 
 const handleLogin = (email, password) => {
     auth().signInWithEmailAndPassword(email, password)
@@ -10,11 +10,14 @@ const handleLogin = (email, password) => {
 const googleSignIn = async () => {
     try {
         await GoogleSignin.hasPlayServices();
-        const userInfo = await GoogleSignin.signIn();
-        return userInfo
+        const { user } = await GoogleSignin.signIn();
+
+        const uid = user.id;
+        const name = user.name;
+        const email = user.email;
+        await saveUser(name, email, 'N/A', uid); 
     } catch (error) {
         if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-            // user cancelled the login flow
             console.log("cancelled")
         } else if (error.code === statusCodes.IN_PROGRESS) {
             console.log("inn progress")
@@ -44,25 +47,40 @@ const facebookSignIn = () => {
         });
 };
 
-// const saveUser = async () => {
-//     try {
-//         await firestore()
-//             .collection('users') // Name of the collection
-//             .add({
-//                 name: name,
-//                 email: email,
-//                 age: parseInt(age), // Ensure age is stored as a number
-//                 createdAt: firestore.FieldValue.serverTimestamp(),
-//             });
-//         Alert.alert('Success', 'User added successfully!');
-//     } catch (error) {
-//         console.error(error);
-//         Alert.alert('Error', 'Failed to add user.');
-//     }
-// };
+const saveUser = async (name,email,age,uid) => {
+    try {
+        await firestore()
+            .collection('users')
+            .doc(uid)
+            .add({
+                name: name,
+                email: email,
+                age: parseInt(age),
+                createdAt: firestore.FieldValue.serverTimestamp(),
+            });
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+const fetchUserData = async (uid) => {
+    try {
+      const userDoc = await firestore().collection('users').doc(uid).get();
+      if (userDoc.exists) {
+        console.log('User Data:', userDoc.data());
+        return userDoc.data();
+      } else {
+        console.log('No user data found');
+      }
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+    }
+  };
 
 export {
     googleSignIn,
     facebookSignIn,
     handleLogin,
+    saveUser,
+    fetchUserData,
 }

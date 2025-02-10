@@ -4,3 +4,5 @@ export const product3 = require('./product3.jpg');
 export const product4 = require('./product4.jpg');
 export const product5 = require('./product5.jpg');
 export const profile = require('./profile.jpg');
+export const shoutout = require('./shoutout.png')
+

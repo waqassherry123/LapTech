@@ -54,8 +54,9 @@ export const tabBarStyle = {
   shadowOpacity: 0.15,
   shadowRadius: 10,
   elevation: 2,
-  paddingVertical: 0,
+  paddingVertical: 10,
   marginTop: 0,
+  alignItem: 'center'
 }
 
 function TabNavigator() {
@@ -78,7 +79,25 @@ function TabNavigator() {
         component={Home}
         options={{
           tabBarIcon: ({ size, focused }) => (
-            <Icon name="Home" fill={focused ? color.Default : "transparent"} size={size} />
+            <Icon name="Home" fill={focused ? color.primary : "transparent"} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Cart"
+        component={MyCart}
+        options={{
+          tabBarIcon: ({ size, focused }) => (
+            <Icon name="Cart" fill={focused ? color.primary : "white"} style={{marginTop: 8}} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Favorite"
+        component={PaymentDoneScreen}
+        options={{
+          tabBarIcon: ({ size, focused }) => (
+            <Icon name="Heart" fill={focused ? color.primary : "white"} size={size} />
           ),
         }}
       />
@@ -87,7 +106,7 @@ function TabNavigator() {
         component={ProfileStack}
         options={{
           tabBarIcon: ({ size, focused }) => (
-            <Icon name="Profile" fill={focused ? color.Default : "transparent"} size={size} />
+            <Icon name="Profile" fill={focused ? color.primary : "transparent"} size={size} />
           ),
         }}
       />

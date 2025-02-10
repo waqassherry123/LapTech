@@ -11,7 +11,7 @@ import {
   GoogleSigninButton,
   statusCodes,
 } from '@react-native-google-signin/google-signin';
-import { facebookSignIn, googleSignIn } from '../../../Firebase';
+import { facebookSignIn, googleSignIn, saveUser } from '../../../Firebase';
 
 //utilities
 import {color} from '../../theme/colors';
@@ -43,6 +43,7 @@ const SignUp = () => {
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [googleDisabled, setGooglDisabled] = useState(false)
@@ -56,39 +57,11 @@ const SignUp = () => {
     GoogleSignin.configure()
   }, [])
 
-  const handleGoogleSignIn = async () => {
-    try {
-      await GoogleSignin.hasPlayServices();
-      const userInfo = await GoogleSignin.signIn();
-      console.log("userInfo", userInfo)
-      // setState({ userInfo });
-    } catch (error) {
-      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        // user cancelled the login flow
-        console.log("cancelled")
-      } else if (error.code === statusCodes.IN_PROGRESS) {
-        // operation (e.g. sign in) is in progress already
-        console.log("inn progress")
-      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        // play services not available or outdated
-        console.log("google service not avaiable")
-      } else {
-        console.log("Error", error)
-        // some other error happened
-      }
-    }
-  }
 
-  const handleSignIn = () => {
-
-      auth()
-        .createUserWithEmailAndPassword(email, password)
-        .then(() => {
-          ToastAndroid.show('Account Created', ToastAndroid.SHORT);
-        })
-        .catch(error => {
-          console.error('Error signing up:', error);
-        });
+  const handleSignIn = async() => {
+    const userCredential = await auth().createUserWithEmailAndPassword(email, password);
+    const { uid } = userCredential.user;
+    saveUser(name, email, 20, uid)
 
   };
 
@@ -98,6 +71,19 @@ const SignUp = () => {
       <Icon name="Logo" width={wp(25)} height={hp(10)} />
       </View>
       <Text style={{ color: color.primary, fontSize: 28, fontWeight:'500', marginBottom:hp(3)}}>Sign Up</Text>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          value={name}
+          placeholder="Name"
+          placeholderTextColor="#aaaaaa"
+          keyboardType='default'
+          autoCapitalize="none"
+          autoCompleteType="email"
+          autoCorrect={false}
+          onChangeText={text => setName(text)}
+        />
+      </View>
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
@@ -173,7 +159,7 @@ const SignUp = () => {
         <Text style={[styles.signUpButtonText, { marginLeft: wp(3) }]}>Continue with Google</Text>
       </TouchableOpacity>
 
-      <spacer.s6 />
+      <spacer.s2 />
       {/* login text */}
       <Text onPress={() => navigation.navigate(ROUTES.LOGIN)}>
         Already have an account? <Text style={[style.fourBold]}>Log In</Text>
@@ -235,7 +221,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   logo: {
-    marginVertical: 60,
+    marginVertical: 10,
     borderRadius: wp(20),
   },
   googleSignIn: { 

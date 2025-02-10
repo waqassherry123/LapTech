@@ -7,7 +7,7 @@ import {
   SafeAreaView,
   ScrollView,
 } from 'react-native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 // PACKAGES
 import auth from '@react-native-firebase/auth';
@@ -34,6 +34,13 @@ import Button from '../../components/commons/Button';
 
 const Profile = () => {
   const navigation = useNavigation();
+  const [currentUser, setCurrentUser] = useState(null)
+
+  useEffect(()=> {
+    const user = auth().currentUser;
+    console.log('user', user)
+    setCurrentUser(user)
+  }, [])
 
   const signOut = () => {
     auth()
@@ -51,7 +58,7 @@ const Profile = () => {
             name="Blob2"
             width={wp(110)}
             height={hp(110)}
-            fill={color.Pink2}
+            fill={color.tertiary}
           />
         </View>
 
@@ -74,11 +81,21 @@ const Profile = () => {
           </View>
         </View>
 
-        <space.s3 />
+        <space.s1 />
 
         <View style={styles.picContainer}>
           <Text style={styles.username}>Alexa Nikiforov</Text>
-          <Text>alexa@msn.com</Text>
+          <Text>{currentUser?.email}</Text>
+        </View>
+
+        <View style={{ flexDirection:"row", justifyContent: 'space-between', paddingHorizontal: wp(6), paddingVertical: hp(1)}}>
+          <TouchableOpacity style={{ width: '48%',paddingVertical: hp(0.8), borderColor: color.primary, borderWidth: 1, borderRadius: wp(2), alignItems:'center'}}>
+            <Text style={{ fontWeight:'bold', color: color.primary}}>Edit Profile</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={{ flexDirection: 'row', width: '48%',paddingVertical: hp(0.8), borderColor: color.primary, borderWidth: 1, borderRadius: wp(2), alignItems:'center', backgroundColor: color.primary, justifyContent:'center'}}>
+            <Image source={images.shoutout} style={{ width: wp(4), height: wp(4), marginRight: wp(3)}} />
+            <Text style={{ fontWeight:'bold', color: color.White}}>Shoutout</Text>
+          </TouchableOpacity>
         </View>
 
         {/* Profile Cards */}
@@ -106,7 +123,7 @@ const Profile = () => {
           </View>
           <View>
             <Text style={styles.value}>Sheikh Yasir</Text>
-            <Text style={styles.value}>yasir@gmail.com</Text>
+            <Text style={styles.value}>{currentUser?.email}</Text>
             <Text style={styles.value}>San Diego</Text>
             <Text style={styles.value}>5200</Text>
             <Text style={styles.value}>(+1) 5484 4757 32</Text>
