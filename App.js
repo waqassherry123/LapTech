@@ -11,6 +11,7 @@ import {
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import {
   createBottomTabNavigator,
   BottomTabBar,
@@ -44,6 +45,7 @@ import ProfileStack from './navigators/ProfileStack';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+const Drawer = createDrawerNavigator();
 
 export const tabBarStyle = {
   borderTopWidth: 0,
@@ -114,6 +116,15 @@ function TabNavigator() {
   )
 }
 
+function MyDrawer() {
+  return (
+    <Drawer.Navigator screenOptions={{ headerShown: false }}>
+      <Drawer.Screen name="Home" component={TabNavigator} />
+      <Drawer.Screen name="Profile" component={Profile} />
+    </Drawer.Navigator>
+  );
+}
+
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -147,8 +158,8 @@ function App() {
           <Stack.Navigator>
             {user ? (
               <Stack.Screen
-                name="Tab"
-                component={TabNavigator}
+                name="Drawer"
+                component={MyDrawer}
                 options={{headerShown: false}}
               />
             ) : (

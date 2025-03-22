@@ -95,13 +95,13 @@ const Home = () => {
 
             {/* Header */}
             <View style={styles.container}>
-                <View style={styles.leftContainer}>
+                <TouchableOpacity style={styles.leftContainer} onPress={() => navigation.openDrawer()}>
                     <Icon
                         name="Menu"
                         width={wp(10)}
                         height={hp(5)}
                     />
-                </View>
+                </TouchableOpacity>
                 <View style={styles.centerContainer}>
                     <Icon
                         name="Location"
